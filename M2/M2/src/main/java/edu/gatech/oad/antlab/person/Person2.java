@@ -31,13 +31,18 @@ public class Person2 {
 	 */
 	private String calc(String input) {
 	  String answer = "";
-	  char[] components = new char[input.length];
-	  for (int i = 0; i < input.length; i++) {
-	  	components[i] = input.charAt(i);
+	  String[] components = new String[input.length()];
+	  for (int i = 0; i < input.length(); i++) {
+	  	components[i] = input.substring(i, i + 1);
 	  }
-	  for (int i = 0; i < input.length; i++) {
-	  	int index = Math.random()
+	  while (answer.length() < input.length()) {
+	  	int index = (int)(Math.random() * input.length());
+	  	if(!components[index].equals(null)) {
+	  		answer += components[index];
+	  		components[index] = null;
+	  	}
 	  }
+	  return answer;
 	}
 	/**
 	 * Return a string rep of this object
