@@ -1,0 +1,7 @@
+defaultTasks 'jar'
+
+apply plugin: 'java'
+
+compileJava {
+    classpath = files('src/main/java', 'lib/resources.jar')
+}
