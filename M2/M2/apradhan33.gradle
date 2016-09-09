@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+defaultTasks 'jar'
+
+compileJava {
+	classpath = files('src/main/java', 'lib/resources.jar')
+}
+
+javadoc {
+	classpath = files('src/main/java', 'lib/resources.jar')
+}
