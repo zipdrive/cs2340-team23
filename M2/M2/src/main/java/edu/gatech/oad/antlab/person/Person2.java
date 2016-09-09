@@ -30,8 +30,14 @@ public class Person2 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-	  //Person 2 put your implementation here
-	  return null;
+	  String answer = "";
+	  char[] components = new char[input.length];
+	  for (int i = 0; i < input.length; i++) {
+	  	components[i] = input.charAt(i);
+	  }
+	  for (int i = 0; i < input.length; i++) {
+	  	int index = Math.random()
+	  }
 	}
 	/**
 	 * Return a string rep of this object
