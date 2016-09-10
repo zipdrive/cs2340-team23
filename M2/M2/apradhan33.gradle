@@ -1,11 +1,10 @@
-apply plugin: 'java'
-
 defaultTasks 'jar'
-
-compileJava {
-	classpath = files('src/main/java', 'lib/resources.jar')
+apply plugin: 'java'
+dependencies {
+	compile files('lib/resources.jar')
 }
-
-javadoc {
-	classpath = files('src/main/java', 'lib/resources.jar')
+jar {
+	manifest {
+		attributes('Class-Path': '../../lib/resources.jar', 'Main-Class': 'edu/gatech/oad/antlab/pkg1/AntLabMain')
+	}
 }

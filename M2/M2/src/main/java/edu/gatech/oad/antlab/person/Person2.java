@@ -37,7 +37,7 @@ public class Person2 {
 	  }
 	  while (answer.length() < input.length()) {
 	  	int index = (int)(Math.random() * input.length());
-	  	if(!components[index].equals(null)) {
+	  	if(components[index] != null) {
 	  		answer += components[index];
 	  		components[index] = null;
 	  	}
