@@ -32,12 +32,10 @@ public class Person2 {
 	private String calc(String input) {
 	  String temp = input;
 	  String answer = "";
-<<<<<<< HEAD
 	  while (temp.length() > 0) {
 		  int index = (int)Math.floor(Math.random() * temp.length());
 		  answer += temp.charAt(index);
 		  temp = temp.substring(0, index)+temp.substring(index+1);
-=======
 	  String[] components = new String[input.length()];
 	  for (int i = 0; i < input.length(); i++) {
 	  	components[i] = input.substring(i, i + 1);
@@ -48,7 +46,6 @@ public class Person2 {
 	  		answer += components[index];
 	  		components[index] = null;
 	  	}
->>>>>>> refs/heads/pr/12
 	  }
 	  return answer;
 	}
