@@ -30,12 +30,7 @@ public class Person2 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-	  String temp = input;
 	  String answer = "";
-	  while (temp.length() > 0) {
-		  int index = (int)Math.floor(Math.random() * temp.length());
-		  answer += temp.charAt(index);
-		  temp = temp.substring(0, index)+temp.substring(index+1);
 	  String[] components = new String[input.length()];
 	  for (int i = 0; i < input.length(); i++) {
 	  	components[i] = input.substring(i, i + 1);
