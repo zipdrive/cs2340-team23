@@ -34,6 +34,22 @@ public class LoginScreenController {
             dialogStage.close();
             mainApplication.login(username);
             mainApplication.initMainScreen();
+        } else if (username.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(dialogStage);
+            alert.setTitle("Null Username");
+            alert.setHeaderText("No Username");
+            alert.setContentText("Please input a username and try again.");
+
+            alert.showAndWait();
+        } else if (password.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(dialogStage);
+            alert.setTitle("Null Password");
+            alert.setHeaderText("No Password");
+            alert.setContentText("Please input a password and try again.");
+
+            alert.showAndWait();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(dialogStage);
