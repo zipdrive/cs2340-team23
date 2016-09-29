@@ -17,6 +17,7 @@ public class Profile {
         this.name = name;
         this.username = username;
         this.password = password;
+        emailAddress = "";
     }
 
     public String getName() { return name; }
@@ -61,14 +62,21 @@ public class Profile {
     }
 
     public Boolean setPhoneNumber(String phoneNumber) {
-        Pattern pattern = Pattern.compile("\\(?(\\d{3})\\)?\\-?(\\d{3})\\-?(\\d{4})");
-        Matcher matcher = pattern.matcher(phoneNumber);
-        if (matcher.find()) {
+        if (phoneNumber.equals("")) {
             for (int i = 0; i < 3; i++) {
-                this.phoneNumber[i] = Integer.parseInt(matcher.group(i));
+                this.phoneNumber[i] = 0;
             }
             return true;
+        } else {
+            Pattern pattern = Pattern.compile("\\(?(\\d{3})\\)?\\-?(\\d{3})\\-?(\\d{4})");
+            Matcher matcher = pattern.matcher(phoneNumber);
+            if (matcher.find()) {
+                for (int i = 0; i < 3; i++) {
+                    this.phoneNumber[i] = Integer.parseInt(matcher.group(i+1));
+                }
+                return true;
+            }
+            return false;
         }
-        return false;
     }
 }
