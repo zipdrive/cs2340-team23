@@ -25,6 +25,8 @@ public class ProfileEditScreenController {
     private TextField emailField;
     @FXML
     private TextField phoneNumberField;
+    @FXML
+    private TextField addressField;
 
     public void setMainApplication(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
@@ -42,6 +44,7 @@ public class ProfileEditScreenController {
         passwordField.setText(user.getPassword());
         emailField.setText(user.getEmailAddress());
         phoneNumberField.setText(user.getPhoneNumber());
+        addressField.setText(user.getHomeAddress());
     }
 
     @FXML
@@ -99,6 +102,7 @@ public class ProfileEditScreenController {
             user.setPassword(password);
             user.setEmail(email);
             user.setPhoneNumber(phoneNumber);
+            user.setHomeAddress(addressField.getText());
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.initOwner(dialogStage);

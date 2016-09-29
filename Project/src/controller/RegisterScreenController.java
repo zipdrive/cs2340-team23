@@ -3,10 +3,14 @@ package controller;
 import fxapp.MainApplication;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Profile;
+import model.UserType;
+
+import static model.UserType.USER;
 
 public class RegisterScreenController {
 
@@ -21,6 +25,9 @@ public class RegisterScreenController {
 
     @FXML
     private PasswordField passwordField;
+
+    @FXML
+    private ComboBox<UserType> userTypeBox;
 
     public void setMainApplication(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
@@ -68,7 +75,7 @@ public class RegisterScreenController {
 
             alert.showAndWait();
         } else {
-            Profile newProfile = new Profile(name, username, password);
+            Profile newProfile = new Profile(name, username, password, userTypeBox.getValue());
             mainApplication.getProfiles().addProfile(newProfile);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.initOwner(dialogStage);

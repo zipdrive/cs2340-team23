@@ -13,11 +13,13 @@ public class Profile {
     private String homeAddress;
     private int[] phoneNumber = new int[3];
 
-    public Profile(String name, String username, String password) {
+    public Profile(String name, String username, String password, UserType userType) {
         this.name = name;
         this.username = username;
         this.password = password;
         emailAddress = "";
+        homeAddress = "";
+        this.userType = userType;
     }
 
     public String getName() { return name; }
@@ -31,6 +33,9 @@ public class Profile {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+    public String getHomeAddress() { return homeAddress; }
+    public void setHomeAddress(String homeAddress) { this.homeAddress = homeAddress; }
 
     public String getEmailAddress() { return emailAddress; }
     public String getPhoneNumber() {
