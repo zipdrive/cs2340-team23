@@ -21,6 +21,12 @@ public class MainApplication extends Application {
     private ProfileList profiles;
     private Profile user;
 
+    /**
+     * Attempts a login with the given username and password
+     * @param username      String representing the username of the login attempt
+     * @param password      String representing the password of the login attempt
+     * @return      True if a Profile exists with the given username and password, False otherwise
+     */
     public Boolean login(String username, String password) {
         Profile p = profiles.findProfile(username);
         if (p != null) {
@@ -32,14 +38,30 @@ public class MainApplication extends Application {
         return false;
     }
 
+    /**
+     * Logs out of the current Profile, and returns to the welcome screen
+     */
     public void logout() {
         user = null;
         initWelcomeScreen();
     }
 
+    /**
+     * Retrieve the current Profile
+     * @return      Profile representing the user currently logged-in
+     */
     public Profile getUser() { return user; }
+
+    /**
+     * Retrieves a list of all Profiles
+     * @return      ProfileList of all Profiles in system
+     */
     public ProfileList getProfiles() { return profiles; }
 
+    /**
+     * Begin the JavaFX application
+     * @param primaryStage      the Stage of the application
+     */
     @Override
     public void start(Stage primaryStage) {
         profiles = new ProfileList();
@@ -47,6 +69,9 @@ public class MainApplication extends Application {
         initWelcomeScreen();
     }
 
+    /**
+     * Sets the current screen to the welcome screen
+     */
     public void initWelcomeScreen() {
         try {
             // Load layout from fxml file.
@@ -72,6 +97,9 @@ public class MainApplication extends Application {
         }
     }
 
+    /**
+     * Pulls up a dialog window for logging in
+     */
     public void initLoginDialog() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -100,6 +128,9 @@ public class MainApplication extends Application {
         }
     }
 
+    /**
+     * Pulls up a dialog window for registering a new Profile
+     */
     public void initRegisterDialog() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -128,6 +159,9 @@ public class MainApplication extends Application {
         }
     }
 
+    /**
+     * Changes the current screen to the main screen of the application
+     */
     public void initMainScreen() {
         try {
             // Load layout from fxml file.
@@ -153,6 +187,9 @@ public class MainApplication extends Application {
         }
     }
 
+    /**
+     * Pulls up a dialog window for editing the current user Profile
+     */
     public void initProfileEditDialog() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -182,5 +219,9 @@ public class MainApplication extends Application {
         }
     }
 
+    /**
+     * The main function
+     * @param args      command-line arguments
+     */
     public static void main(String[] args) { launch(args); }
 }

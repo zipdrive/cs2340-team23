@@ -29,14 +29,25 @@ public class RegisterScreenController {
     @FXML
     private ComboBox<UserType> userTypeBox;
 
+    /**
+     * Sets a pointer to the main application
+     * @param mainApplication   pointer to the main application
+     */
     public void setMainApplication(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
 
+    /**
+     * Sets a pointer to the dialog stage
+     * @param dialogStage       Stage representing the dialog window
+     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Handle the "Register" button being pressed
+     */
     @FXML
     public void handleRegisterPressed() {
         String name = nameField.getText();
@@ -87,6 +98,10 @@ public class RegisterScreenController {
             dialogStage.close();
         }
     }
+
+    /**
+     * Handle the "Cancel" button being pressed
+     */
     @FXML
     public void handleCancelPressed() {
         dialogStage.close();

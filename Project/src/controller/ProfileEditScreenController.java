@@ -28,14 +28,25 @@ public class ProfileEditScreenController {
     @FXML
     private TextField addressField;
 
+    /**
+     * Sets a pointer to the main application
+     * @param mainApplication   pointer to the main application
+     */
     public void setMainApplication(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
 
+    /**
+     * Sets a pointer to the dialog stage
+     * @param dialogStage       Stage representing the dialog window
+     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Sets the default values for the text fields
+     */
     public void setValues() {
         Profile user = mainApplication.getUser();
         nameField.setText(user.getName());
@@ -47,6 +58,9 @@ public class ProfileEditScreenController {
         addressField.setText(user.getHomeAddress());
     }
 
+    /**
+     * Handle the "Save Changes" button being pressed
+     */
     @FXML
     public void handleSaveChangesPressed() {
         String name = nameField.getText();
@@ -113,6 +127,10 @@ public class ProfileEditScreenController {
             dialogStage.close();
         }
     }
+
+    /**
+     * Handle the "Cancel" button being pressed
+     */
     @FXML
     public void handleCancelPressed() {
         dialogStage.close();

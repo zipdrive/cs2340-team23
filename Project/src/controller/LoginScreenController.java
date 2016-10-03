@@ -7,6 +7,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * Class handling the screen for logging in
+ */
 public class LoginScreenController {
 
     private MainApplication mainApplication;
@@ -18,14 +21,25 @@ public class LoginScreenController {
     @FXML
     private PasswordField passwordField;
 
+    /**
+     * Sets a pointer to the main application
+     * @param mainApplication   pointer to the main application
+     */
     public void setMainApplication(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
 
+    /**
+     * Sets a pointer to the dialog stage
+     * @param dialogStage       Stage representing the dialog window
+     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
 
+    /**
+     * Handle the "Login" button being pressed
+     */
     @FXML
     public void handleLoginPressed() {
         String username = usernameField.getText();
@@ -61,6 +75,10 @@ public class LoginScreenController {
             }
         }
     }
+
+    /**
+     * Handle the "Cancel" button being pressed
+     */
     @FXML
     public void handleCancelPressed() {
         dialogStage.close();
