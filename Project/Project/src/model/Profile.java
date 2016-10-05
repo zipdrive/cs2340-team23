@@ -33,6 +33,18 @@ public class Profile {
     }
 
     /**
+     * Returns the type of Profile
+     * @return      UserType representing the Profile account privileges
+     */
+    public UserType getUserType() { return userType; }
+
+    /**
+     * Sets the type of Profile
+     * @param userType      UserType representing the new privileges of the Profile
+     */
+    public void setUserType(UserType userType) { this.userType = userType; }
+
+    /**
      * Returns the name of the Profile user
      * @return      String representing the name of the Profile user
      */

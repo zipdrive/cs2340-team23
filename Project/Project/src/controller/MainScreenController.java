@@ -7,34 +7,29 @@ import javafx.scene.control.Label;
 /**
  * Class to handle the main screen of the application
  */
-public class MainScreenController {
-
-    private MainApplication mainApplication;
+public class MainScreenController extends ScreenController {
 
     @FXML
     private Label userLabel;
 
-    /**
-     * Sets a pointer to the main application
-     * @param mainApplication       pointer to the main application
-     */
+    @Override
     public void setMainApplication(MainApplication mainApplication) {
-        this.mainApplication = mainApplication;
-        userLabel.setText("User: " + mainApplication.getUser().getUsername());
+        super.setMainApplication(mainApplication);
+        userLabel.setText(mainApplication.getUser().getName() + " (" + mainApplication.getUser().getUsername() + ")");
     }
 
     /**
      * Handle the "Options" button being pressed
      */
     public void handleOptionsPressed() {
-        mainApplication.initProfileEditDialog();
+        getMainApplication().initDialogScreen("Edit Profile", "profileEditScreen.fxml");
     }
 
     /**
      * Handle the "Logout" button being pressed
      */
     public void handleLogoutPressed() {
-        mainApplication.logout();
-        mainApplication.initWelcomeScreen();
+        getMainApplication().logout();
+        getMainApplication().initScreen("Welcome Screen", "welcomeScreen.fxml");
     }
 }
