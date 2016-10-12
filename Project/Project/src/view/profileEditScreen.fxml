@@ -62,7 +62,7 @@
                     <HBox.margin>
                         <Insets left="125.0" right="25.0" />
                     </HBox.margin></Button>
-                <Button mnemonicParsing="false" onAction="#handleCancelPressed" prefHeight="25.0" prefWidth="100.0" text="Cancel">
+                <Button mnemonicParsing="false" onAction="#closeDialogStage" prefHeight="25.0" prefWidth="100.0" text="Cancel">
                     <HBox.margin>
                         <Insets left="25.0" />
                     </HBox.margin></Button>

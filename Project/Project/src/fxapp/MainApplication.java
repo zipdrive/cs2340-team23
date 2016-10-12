@@ -9,6 +9,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Profile;
 import model.ProfileList;
+import model.ReportList;
+import model.UserType;
 
 import java.io.IOException;
 
@@ -17,6 +19,7 @@ public class MainApplication extends Application {
     private Stage mainScreen;
     private GridPane layout;
 
+    private ReportList reports;
     private ProfileList profiles;
     private Profile user;
 
@@ -42,7 +45,7 @@ public class MainApplication extends Application {
      */
     public void logout() {
         user = null;
-        initWelcomeScreen();
+        initScreen("Welcome Screen", "welcomeScreen.fxml");
     }
 
     /**
@@ -58,32 +61,42 @@ public class MainApplication extends Application {
     public ProfileList getProfiles() { return profiles; }
 
     /**
+     * Retrieves a list of all water reports
+     * @return      ReportList containing all reports in system
+     */
+    public ReportList getReports() { return reports; }
+
+    /**
      * Begin the JavaFX application
      * @param primaryStage      the Stage of the application
      */
     @Override
     public void start(Stage primaryStage) {
+        reports = new ReportList();
         profiles = new ProfileList();
         mainScreen = primaryStage;
-        initWelcomeScreen();
+        initScreen("Welcome Screen", "welcomeScreen.fxml");
     }
 
     /**
-     * Sets the current screen to the welcome screen
+     * Initializes a new layout in window
+     * @param title     the title of the window
+     * @param filename  the xml file in view
      */
-    public void initWelcomeScreen() {
+    public void initScreen(String title, String filename) {
         try {
             // Load layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApplication.class.getResource("../view/welcomeScreen.fxml"));
+            loader.setLocation(MainApplication.class.getResource("../view/" + filename));
             layout = loader.load();
 
             // Give the controller access to the main app.
-            WelcomeScreenController controller = loader.getController();
+            ScreenController controller = loader.getController();
             controller.setMainApplication(this);
+            controller.init();
 
             // Set the Main App title
-            mainScreen.setTitle("Welcome Screen");
+            mainScreen.setTitle(title);
 
             // Show the scene containing the layout.
             Scene scene = new Scene(layout);
@@ -97,118 +110,30 @@ public class MainApplication extends Application {
     }
 
     /**
-     * Pulls up a dialog window for logging in
+     * Initializes a dialog popup
+     * @param title         the title of the window
+     * @param filename      the xml file in view
      */
-    public void initLoginDialog() {
+    public void initDialogScreen(String title, String filename) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApplication.class.getResource("../view/loginScreen.fxml"));
+            loader.setLocation(MainApplication.class.getResource("../view/" + filename));
             GridPane page = loader.load();
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Login");
+            dialogStage.setTitle(title);
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(mainScreen);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
-            LoginScreenController controller = loader.getController();
+            DialogScreenController controller = loader.getController();
             controller.setMainApplication(this);
             controller.setDialogStage(dialogStage);
-
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Pulls up a dialog window for registering a new Profile
-     */
-    public void initRegisterDialog() {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApplication.class.getResource("../view/registerScreen.fxml"));
-            GridPane page = loader.load();
-
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Register");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(mainScreen);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            // Set the person into the controller.
-            RegisterScreenController controller = loader.getController();
-            controller.setMainApplication(this);
-            controller.setDialogStage(dialogStage);
-
-            // Show the dialog and wait until the user closes it
-            dialogStage.showAndWait();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Changes the current screen to the main screen of the application
-     */
-    public void initMainScreen() {
-        try {
-            // Load layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApplication.class.getResource("../view/mainScreen.fxml"));
-            layout = loader.load();
-
-            // Give the controller access to the main app.
-            MainScreenController controller = loader.getController();
-            controller.setMainApplication(this);
-
-            // Set the Main App title
-            mainScreen.setTitle("Main Screen");
-
-            // Show the scene containing the layout.
-            Scene scene = new Scene(layout);
-            mainScreen.setScene(scene);
-            mainScreen.show();
-
-        } catch (IOException e) {
-            //error on load, so log it
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Pulls up a dialog window for editing the current user Profile
-     */
-    public void initProfileEditDialog() {
-        try {
-            // Load the fxml file and create a new stage for the popup dialog.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApplication.class.getResource("../view/profileEditScreen.fxml"));
-            GridPane page = loader.load();
-
-            // Create the dialog Stage.
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Edit Profile");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(mainScreen);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            // Set the person into the controller.
-            ProfileEditScreenController controller = loader.getController();
-            controller.setMainApplication(this);
-            controller.setDialogStage(dialogStage);
-            controller.setValues();
+            controller.init();
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

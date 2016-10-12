@@ -1,34 +1,21 @@
 package controller;
 
-import fxapp.MainApplication;
 import javafx.fxml.FXML;
 
-public class WelcomeScreenController {
-
-    private MainApplication mainApplication;
-
-    /**
-     * Sets a pointer to the main application
-     * @param mainApplication   pointer to the main application
-     */
-    public void setMainApplication(MainApplication mainApplication) {
-        this.mainApplication = mainApplication;
-    }
+public class WelcomeScreenController extends ScreenController {
 
     /**
      * Handle the "Login" button being pressed
      */
     @FXML
-    public void handleLoginPressed() {
-        mainApplication.initLoginDialog();
-    }
+    public void handleLoginPressed() { getMainApplication().initDialogScreen("Login", "loginScreen.fxml"); }
 
     /**
      * Handle the "Register" button being pressed
      */
     @FXML
     public void handleRegisterPressed() {
-        mainApplication.initRegisterDialog();
+        getMainApplication().initDialogScreen("Register", "registerScreen.fxml");
     }
 
     /**

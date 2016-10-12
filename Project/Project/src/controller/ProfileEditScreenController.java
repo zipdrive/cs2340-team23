@@ -1,17 +1,11 @@
 package controller;
 
-import fxapp.MainApplication;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import model.Profile;
 
-public class ProfileEditScreenController {
-
-    private MainApplication mainApplication;
-    private Stage dialogStage;
+public class ProfileEditScreenController extends DialogScreenController {
 
     @FXML
     private TextField nameField;
@@ -29,26 +23,11 @@ public class ProfileEditScreenController {
     private TextField addressField;
 
     /**
-     * Sets a pointer to the main application
-     * @param mainApplication   pointer to the main application
-     */
-    public void setMainApplication(MainApplication mainApplication) {
-        this.mainApplication = mainApplication;
-    }
-
-    /**
-     * Sets a pointer to the dialog stage
-     * @param dialogStage       Stage representing the dialog window
-     */
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
-    }
-
-    /**
      * Sets the default values for the text fields
      */
-    public void setValues() {
-        Profile user = mainApplication.getUser();
+    @Override
+    public void init() {
+        Profile user = getMainApplication().getUser();
         nameField.setText(user.getName());
         titleField.setText(user.getTitle());
         usernameField.setText(user.getUsername());
@@ -69,47 +48,19 @@ public class ProfileEditScreenController {
         String email = emailField.getText();
         String phoneNumber = phoneNumberField.getText();
         if (name.equals("")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(dialogStage);
-            alert.setTitle("Null Name Field");
-            alert.setHeaderText("No Name");
-            alert.setContentText("Please input a name and try again.");
-
-            alert.showAndWait();
+            generateErrorWarning("No Name Entered", "Please enter a name and try again.");
         } else if (username.equals("")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(dialogStage);
-            alert.setTitle("Null Username Field");
-            alert.setHeaderText("No Username");
-            alert.setContentText("Please input a username and try again.");
-
-            alert.showAndWait();
+            generateErrorWarning("No Username Entered", "Please enter a username and try again.");
         } else if (password.equals("")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(dialogStage);
-            alert.setTitle("Null Password Field");
-            alert.setHeaderText("No Password");
-            alert.setContentText("Please input a password and try again.");
-
-            alert.showAndWait();
+            generateErrorWarning("No Password Entered", "Please enter a password and try again.");
         } else if (!email.equals("") && !Profile.matchEmailFormat(email)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(dialogStage);
-            alert.setTitle("Invalid Email");
-            alert.setHeaderText("Email Not Correct Format");
-            alert.setContentText("Please input a valid email address and try again.");
-
-            alert.showAndWait();
+            generateErrorWarning("Invalid Email", "Please enter a valid email address and try again.");
         } else if (!phoneNumber.equals("") && !Profile.matchPhoneNumberFormat(phoneNumber)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(dialogStage);
-            alert.setTitle("Invalid Phone Number");
-            alert.setHeaderText("Incorrect Phone Number Format");
-            alert.setContentText("Please input a valid phone number and try again.");
-
-            alert.showAndWait();
+            generateErrorWarning("Invalid Phone Number", "Please enter a valid phone number and try again.");
+        } else if (getMainApplication().getProfiles().findProfile(username) != null) {
+            generateErrorWarning("Username Already Taken", "Please enter another username and try again.");
         } else {
-            Profile user = mainApplication.getUser();
+            Profile user = getMainApplication().getUser();
             user.setName(name);
             user.setTitle(titleField.getText());
             user.setUsername(username);
@@ -118,21 +69,8 @@ public class ProfileEditScreenController {
             user.setPhoneNumber(phoneNumber);
             user.setHomeAddress(addressField.getText());
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.initOwner(dialogStage);
-            alert.setTitle("Changes Saved");
-            alert.setHeaderText("Changes Saved");
-
-            alert.showAndWait();
-            dialogStage.close();
+            generateInformationPopup("Changes Saved", "Your profile has been edited!");
+            closeDialogStage();
         }
-    }
-
-    /**
-     * Handle the "Cancel" button being pressed
-     */
-    @FXML
-    public void handleCancelPressed() {
-        dialogStage.close();
     }
 }
