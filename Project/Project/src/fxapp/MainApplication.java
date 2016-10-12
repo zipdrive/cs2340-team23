@@ -78,6 +78,11 @@ public class MainApplication extends Application {
         initScreen("Welcome Screen", "welcomeScreen.fxml");
     }
 
+    /**
+     * Initializes a new layout in window
+     * @param title     the title of the window
+     * @param filename  the xml file in view
+     */
     public void initScreen(String title, String filename) {
         try {
             // Load layout from fxml file.
@@ -104,6 +109,11 @@ public class MainApplication extends Application {
         }
     }
 
+    /**
+     * Initializes a dialog popup
+     * @param title         the title of the window
+     * @param filename      the xml file in view
+     */
     public void initDialogScreen(String title, String filename) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.

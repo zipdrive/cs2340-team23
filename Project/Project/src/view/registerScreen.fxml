@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -11,9 +12,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-
-<?import javafx.collections.FXCollections?>
 <?import model.UserType?>
+
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterScreenController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="150.0" />
@@ -28,14 +28,11 @@
         <RowConstraints maxHeight="178.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Label text="Username" GridPane.rowIndex="2">
-            <GridPane.margin>
-                <Insets left="25.0" />
-            </GridPane.margin></Label>
-        <Label text="Password" GridPane.rowIndex="3">
-            <GridPane.margin>
-                <Insets bottom="25.0" left="25.0" />
-            </GridPane.margin></Label>
+      <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets right="25.0" />
+         </GridPane.margin>
+      </TextField>
         <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <GridPane.margin>
                 <Insets right="25.0" />
@@ -44,11 +41,19 @@
             <GridPane.margin>
                 <Insets bottom="25.0" right="25.0" />
             </GridPane.margin></PasswordField>
-        <Label alignment="CENTER" prefHeight="35.0" prefWidth="541.0" text="Register New Profile" textAlignment="CENTER" GridPane.columnSpan="2">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
+      <ComboBox fx:id="userTypeBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+          <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <UserType fx:value="USER" />
+                  <UserType fx:value="WORKER" />
+                  <UserType fx:value="MANAGER" />
+                  <UserType fx:value="ADMIN" />
+              </FXCollections>
+          </items>
+      </ComboBox>
         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
             <children>
                 <Button mnemonicParsing="false" onAction="#handleRegisterPressed" prefHeight="25.0" prefWidth="100.0" text="Register">
@@ -64,33 +69,28 @@
                 <Insets />
             </GridPane.margin>
         </HBox>
+        <Label alignment="CENTER" prefHeight="35.0" prefWidth="541.0" text="Register New Profile" textAlignment="CENTER" GridPane.columnSpan="2">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
       <Label text="Name" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="25.0" />
          </GridPane.margin>
       </Label>
-      <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <GridPane.margin>
-            <Insets right="25.0" />
-         </GridPane.margin>
-      </TextField>
+        <Label text="Username" GridPane.rowIndex="2">
+            <GridPane.margin>
+                <Insets left="25.0" />
+            </GridPane.margin></Label>
+        <Label text="Password" GridPane.rowIndex="3">
+            <GridPane.margin>
+                <Insets bottom="25.0" left="25.0" />
+            </GridPane.margin></Label>
       <Label text="Account Type" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets left="25.0" />
          </GridPane.margin>
       </Label>
-      <ComboBox fx:id="userTypeBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-          <items>
-              <FXCollections fx:factory="observableArrayList">
-                  <UserType fx:value="USER" />
-                  <UserType fx:value="WORKER" />
-                  <UserType fx:value="MANAGER" />
-                  <UserType fx:value="ADMIN" />
-              </FXCollections>
-          </items>
-      </ComboBox>
     </children>
 </GridPane>
