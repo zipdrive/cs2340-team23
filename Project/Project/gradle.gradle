@@ -1,0 +1,7 @@
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.google.maps:google-maps-services:v0.1.16'
+}

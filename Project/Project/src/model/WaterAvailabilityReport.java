@@ -17,19 +17,48 @@ public class WaterAvailabilityReport {
      * @param waterType         the type of water source
      * @param waterCondition    the condition of the water source
      */
-    public WaterAvailabilityReport(String name, String location, WaterType waterType, WaterCondition waterCondition) {
+    public WaterAvailabilityReport(int number, String name, String location, WaterType waterType, WaterCondition waterCondition) {
         dateAndTime = LocalDateTime.now();
-        reportNumber = 0; // TODO edit later
+        reportNumber = number;
         nameOfReporter = name;
         locationOfReport = location;
         this.waterType = waterType;
         this.waterCondition = waterCondition;
     }
 
+    /**
+     * Retrieves the date and time of the report
+     * @return      date and time of report
+     */
     public String getDateAndTime() { return dateAndTime.toString(); }
+
+    /**
+     * Retrieves the report number
+     * @return      number of report
+     */
     public int getReportNumber() { return reportNumber; }
+
+    /**
+     * Retrieves the name of the person who made the report
+     * @return      name of report creator
+     */
     public String getNameOfReporter() { return nameOfReporter; }
+
+    /**
+     * Retrieves the location of the report
+     * @return      location of report
+     */
     public String getLocationOfReport() { return locationOfReport; }
+
+    /**
+     * Retrieves the water source type
+     * @return      type of water source
+     */
     public String getWaterType() { return waterType.toString(); }
+
+    /**
+     * Retrieves the condition of the water
+     * @return      condition of the water
+     */
     public String getWaterCondition() { return waterCondition.toString(); }
 }
