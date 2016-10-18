@@ -12,6 +12,7 @@ public class MainUserScreenController extends MainScreenController {
      * Handles when the "View Availability Reports" button is pressed
      */
     public void handleViewAvailabilityReportsPressed() {
-        getMainApplication().initDialogScreen("View Water Reports", "viewReportsMapScreen.fxml");
+        getMainApplication().initMapScreen("View Water Reports", new ViewReportsMapScreenInitializer());
+        //getMainApplication().initDialogScreen("View Water Reports", "viewReportsMapScreen.fxml");
     }
 }

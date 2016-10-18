@@ -20,5 +20,13 @@ package model.profiles;
  *      view security log
  */
 public enum UserType {
-    USER, WORKER, MANAGER, ADMIN
+    USER("User"), WORKER("Worker"), MANAGER("Manager"), ADMIN("Admin");
+
+    private String stringRepresent;
+
+    UserType(String s) {
+        stringRepresent = s;
+    }
+
+    public String toString() { return stringRepresent; }
 }

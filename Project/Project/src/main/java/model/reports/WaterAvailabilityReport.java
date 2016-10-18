@@ -37,36 +37,13 @@ public class WaterAvailabilityReport {
         this.coordinates = coordinates;
         this.type = type;
         this.condition = condition;
-
-/**
-        try {
-            GeocodingService geocodingService = new GeocodingService();
-            //        geocodingService.setProperty("key", "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyC64U2UXcmS4Xacx0wDWPXXfelwuZdb0Pk");
-            geocodingService.geocode(location, (results, status) -> {
-                try {
-                    if (status == GeocoderStatus.ZERO_RESULTS) {
-                        // show popup saying address gave no results
-                    } else if (results.length > 1) {
-                        // make user select between results
-                    } else {
-                        locationOfReport = results[0].getFormattedAddress();
-                        coordinates = results[0].getGeometry().getLocation();
-                    }
-                } catch (Exception e) {
-                    System.out.println("Whoops. Something went wrong in the geocoding of the address.");
-                }
-            });
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        **/
     }
 
     /**
      * Retrieves the date and time of the report
      * @return      date and time of report
      */
-    public String getDateAndTime() { return time.getMonth() +
+    public String getDateAndTime() { return time.getMonth().getValue() +
             "/" + time.getDayOfMonth() +
             "/" + time.getYear() +
             ", " + time.getHour() +
