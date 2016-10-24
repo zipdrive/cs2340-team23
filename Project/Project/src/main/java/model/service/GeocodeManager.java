@@ -4,7 +4,6 @@ import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.service.geocoding.GeocoderStatus;
 import com.lynden.gmapsfx.service.geocoding.GeocodingResult;
 import com.lynden.gmapsfx.service.geocoding.GeocodingService;
-import fxapp.MainApplication;
 
 public class GeocodeManager {
     private static GeocodingService geocoding;

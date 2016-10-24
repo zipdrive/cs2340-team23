@@ -22,7 +22,7 @@ package model.profiles;
 public enum UserType {
     USER("User"), WORKER("Worker"), MANAGER("Manager"), ADMIN("Admin");
 
-    private String stringRepresent;
+    private final String stringRepresent;
 
     UserType(String s) {
         stringRepresent = s;

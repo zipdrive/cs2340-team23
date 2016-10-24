@@ -2,7 +2,6 @@ package fxapp;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
-import com.lynden.gmapsfx.javascript.object.GoogleMap;
 import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -41,14 +40,9 @@ public class MainApplication extends Application implements MapComponentInitiali
      * @return      True if a Profile exists with the given username and password, False otherwise
      */
     public Boolean login(String username, String password) {
-        Profile p = profiles.findProfile(username);
-        if (p != null) {
-            if (p.getPassword().equals(password)) {
-                this.user = p;
-                return true;
-            }
-        }
-        return false;
+        Profile p = profiles.login(username, password);
+        if (p != null) { this.user = p; }
+        return (p != null);
     }
 
     /**

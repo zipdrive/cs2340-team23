@@ -66,4 +66,30 @@ public class ReportCreator {
                 }
             });
     }
+
+    public static void createWaterPurityReport(String address, WaterPurityCondition condition, double virusPPM, double contaminantPPM) {
+        ReportCreator.geocode(address, () -> {
+                switch (GeocodeManager.getStatus()) {
+                    case SUCCESS:
+                        WaterPurityReport report = new WaterPurityReport(
+                                ReportCreator.mainApplication.getReports().getNextReportNumber(),
+                                ReportCreator.mainApplication.getUser().getName(),
+                                GeocodeManager.getAddress(), GeocodeManager.getCoordinates(), condition, virusPPM, contaminantPPM);
+                        ReportCreator.mainApplication.getReports().addNewReport(report);
+                        ReportCreator.mainApplication.generateInformationAlert("Report Submitted Successfully",
+                                "Thank you for submitting a report!");
+                        break;
+                    case NO_RESULTS:
+                        ReportCreator.mainApplication.generateErrorAlert("No Locations Found",
+                                "We could not find any locations that matched your submission. " +
+                                        "Please try again.");
+                        break;
+                    case MULTIPLE_RESULTS:
+                        ReportCreator.mainApplication.initDialogScreen("Multiple Locations Found", "geocodingMultipleLocationsScreen.fxml");
+                        break;
+                    default:
+                        break;
+                }
+            });
+    }
 }

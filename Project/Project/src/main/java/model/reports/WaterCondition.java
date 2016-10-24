@@ -6,7 +6,7 @@ package model.reports;
 public enum WaterCondition {
     WASTE("Waste"), TREATABLE_CLEAR("Treatable (Clear)"), TREATABLE_MUDDY("Treatable (Muddy)"), POTABLE("Potable");
 
-    private String stringRepresent;
+    private final String stringRepresent;
 
     WaterCondition(String s) {
         stringRepresent = s;
