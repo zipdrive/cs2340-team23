@@ -6,7 +6,7 @@ package model.reports;
 public enum WaterType {
     BOTTLED("Bottled Water"), WELL("Well"), STREAM("Stream"), LAKE("Lake"), SPRING("Spring"), OTHER("Other");
 
-    private String stringRepresent;
+    private final String stringRepresent;
 
     WaterType(String s) {
         stringRepresent = s;

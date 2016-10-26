@@ -10,9 +10,9 @@ public class ErrorLog {
         ErrorLog.log = new ArrayList<>();
     }
 
-    public static void log(Exception e, IncidentPriority p) {
+    public static void log(Exception e, boolean p) {
         ErrorLog.log.add(new ErrorIncident(e, p));
-        System.out.println("Error logged: " + e.toString() + ", priority " + p.toString());
+        System.out.println("Error logged: " + e.toString() + ", priority " + (p ? "HIGH" : "LOW"));
         StackTraceElement[] stackTrace = e.getStackTrace();
         for (int i = 0; i < 8 || i < stackTrace.length; i++) {
             System.out.println("\t" + stackTrace[i].toString());

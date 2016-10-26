@@ -143,27 +143,23 @@ public class Profile {
     /**
      * Sets the email address of the Profile user
      * @param emailAddress      String representing the new email address of the Profile user
-     * @return          True if format matched and was successfully set, False otherwise
      */
-    public Boolean setEmail(String emailAddress) {
+    public void setEmail(String emailAddress) {
         if (matchEmailFormat(emailAddress)) {
             this.emailAddress = emailAddress;
-            return true;
         }
-        return false;
     }
 
     /**
      * Sets the phone number of the Profile user
      * @param phoneNumber       String representing the new phone number of the Profile user
-     * @return          True if format matched and was successfully set, False otherwise
      */
-    public Boolean setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         if (phoneNumber.equals("")) {
             for (int i = 0; i < 3; i++) {
                 this.phoneNumber[i] = 0;
             }
-            return true;
+            return;
         } else {
             Pattern pattern = Pattern.compile("\\(?(\\d{3})\\)?\\-?(\\d{3})\\-?(\\d{4})");
             Matcher matcher = pattern.matcher(phoneNumber);
@@ -171,9 +167,9 @@ public class Profile {
                 for (int i = 0; i < 3; i++) {
                     this.phoneNumber[i] = Integer.parseInt(matcher.group(i+1));
                 }
-                return true;
+                return;
             }
-            return false;
+            return;
         }
     }
 }

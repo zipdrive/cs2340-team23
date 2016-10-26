@@ -2,7 +2,6 @@ package fxapp;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
-import com.lynden.gmapsfx.javascript.object.GoogleMap;
 import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.log.ErrorLog;
-import model.log.IncidentPriority;
 import model.log.SecurityLog;
 import model.profiles.Profile;
 import model.profiles.ProfileList;
@@ -41,14 +39,9 @@ public class MainApplication extends Application implements MapComponentInitiali
      * @return      True if a Profile exists with the given username and password, False otherwise
      */
     public Boolean login(String username, String password) {
-        Profile p = profiles.findProfile(username);
-        if (p != null) {
-            if (p.getPassword().equals(password)) {
-                this.user = p;
-                return true;
-            }
-        }
-        return false;
+        Profile p = profiles.login(username, password);
+        if (p != null) { this.user = p; }
+        return (p != null);
     }
 
     /**
@@ -124,7 +117,7 @@ public class MainApplication extends Application implements MapComponentInitiali
             mainScreen.show();
 
         } catch (IOException e) {
-            ErrorLog.log(e, IncidentPriority.LOCAL);
+            ErrorLog.log(e, false);
         }
     }
 
@@ -158,7 +151,7 @@ public class MainApplication extends Application implements MapComponentInitiali
             dialogStage.showAndWait();
 
         } catch (IOException e) {
-            ErrorLog.log(e, IncidentPriority.LOCAL);
+            ErrorLog.log(e, false);
         }
     }
 
@@ -182,7 +175,7 @@ public class MainApplication extends Application implements MapComponentInitiali
 
             mapStage.showAndWait();
         } catch (Exception e) {
-            ErrorLog.log(e, IncidentPriority.LOCAL);
+            ErrorLog.log(e, false);
         }
     }
 

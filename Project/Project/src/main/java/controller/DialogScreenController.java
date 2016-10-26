@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
@@ -26,7 +25,7 @@ public class DialogScreenController extends ScreenController {
      * @param header        String for the title and header of the popup message
      * @param body          String for the body of the popup message
      */
-    public void generateErrorWarning(String header, String body) {
+    void generateErrorWarning(String header, String body) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.initOwner(dialogStage);
 
@@ -42,7 +41,7 @@ public class DialogScreenController extends ScreenController {
      * @param header        String for the title and header of the popup message
      * @param body          String for the body of the popup message
      */
-    public void generateInformationPopup(String header, String body) {
+    void generateInformationPopup(String header, String body) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.initOwner(dialogStage);
 
