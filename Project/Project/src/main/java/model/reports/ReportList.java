@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReportList {
-    private List<WaterAvailabilityReport> availabilityReports;
-    private List<WaterPurityReport> purityReports;
+    private final List<WaterAvailabilityReport> availabilityReports;
+    private final List<WaterPurityReport> purityReports;
 
     public ReportList() {
         availabilityReports = new ArrayList<>();

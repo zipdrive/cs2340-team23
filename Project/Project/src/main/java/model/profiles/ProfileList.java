@@ -9,7 +9,7 @@ import java.util.Set;
  * Class to manage all Profiles
  */
 public class ProfileList {
-    private Set<Profile> profileSet;
+    private final Set<Profile> profileSet;
 
     /**
      * Constructor for ProfileList

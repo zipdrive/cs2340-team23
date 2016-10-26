@@ -2,10 +2,10 @@ package model.log;
 
 class ErrorIncident {
     private final Exception error;
-    private final IncidentPriority priority;
+    private final boolean highPriority;
 
-    public ErrorIncident(Exception error, IncidentPriority priority) {
+    public ErrorIncident(Exception error, boolean highPriority) {
         this.error = error;
-        this.priority = priority;
+        this.highPriority = highPriority;
     }
 }

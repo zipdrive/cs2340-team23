@@ -2,8 +2,11 @@ package model.log;
 
 import model.profiles.LoginAttemptResult;
 
-public class SecurityIncidentLogin extends SecurityIncident {
-    LoginAttemptResult result;
+/**
+ * SecurityIncident for when a login attempt is made
+ */
+class SecurityIncidentLogin extends SecurityIncident {
+    private final LoginAttemptResult result;
 
     public SecurityIncidentLogin(String username, LoginAttemptResult result) {
         super(username);

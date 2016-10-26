@@ -8,6 +8,8 @@ import javafx.scene.control.ComboBox;
 import model.service.GeocodeCallback;
 import model.service.GeocodeManager;
 
+import java.util.Collections;
+
 public class GeocodingMultipleLocationsScreenController extends DialogScreenController {
 
     private GeocodeCallback callback;
@@ -20,9 +22,7 @@ public class GeocodingMultipleLocationsScreenController extends DialogScreenCont
         callback = GeocodeManager.getCallback();
 
         ObservableList<GeocodingResult> list = new ReadOnlyListWrapper<>();
-        for (GeocodingResult result : GeocodeManager.getResults()) {
-            list.add(result);
-        }
+        Collections.addAll(list, GeocodeManager.getResults());
         locationsComboBox.setItems(list);
     }
 

@@ -143,7 +143,6 @@ public class Profile {
     /**
      * Sets the email address of the Profile user
      * @param emailAddress      String representing the new email address of the Profile user
-     * @return          True if format matched and was successfully set, False otherwise
      */
     public void setEmail(String emailAddress) {
         if (matchEmailFormat(emailAddress)) {
@@ -154,7 +153,6 @@ public class Profile {
     /**
      * Sets the phone number of the Profile user
      * @param phoneNumber       String representing the new phone number of the Profile user
-     * @return          True if format matched and was successfully set, False otherwise
      */
     public void setPhoneNumber(String phoneNumber) {
         if (phoneNumber.equals("")) {

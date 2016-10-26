@@ -1,7 +1,10 @@
 package model.log;
 
-public class SecurityIncidentUnblocked extends SecurityIncident {
-    private String unblockedUsername;
+/**
+ * SecurityIncident for when an account is unblocked
+ */
+class SecurityIncidentUnblocked extends SecurityIncident {
+    private final String unblockedUsername;
 
     public SecurityIncidentUnblocked(String admin, String unblocked) {
         super(admin);

@@ -33,8 +33,8 @@ public class WaterPurityReportScreenController extends DialogScreenController {
     public void handleSubmitReportPressed() {
         String address = locationField.getText();
         Pattern pattern = Pattern.compile("^\\d*\\.?\\d*$");
-        double virusPPM = 0.0;
-        double contaminantPPM = 0.0;
+        double virusPPM;
+        double contaminantPPM;
         Matcher virusMatcher = pattern.matcher(virusField.getText());
         if (!virusField.getText().equals("") && virusMatcher.find()) {
             virusPPM = Double.parseDouble(virusMatcher.group(0));

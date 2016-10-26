@@ -2,11 +2,11 @@ package model.log;
 
 import java.time.LocalDateTime;
 
-public class SecurityIncident {
-    protected LocalDateTime timestamp;
-    protected String username;
+class SecurityIncident {
+    final LocalDateTime timestamp;
+    final String username;
 
-    public SecurityIncident(String username) {
+    SecurityIncident(String username) {
         timestamp = LocalDateTime.now();
         this.username = username;
     }

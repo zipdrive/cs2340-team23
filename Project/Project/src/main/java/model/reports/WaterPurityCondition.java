@@ -5,7 +5,7 @@ public enum WaterPurityCondition {
     TREATABLE("Treatable"),
     UNSAFE("Unsafe");
 
-    private String text;
+    private final String text;
 
     WaterPurityCondition(String text) { this.text = text; }
 

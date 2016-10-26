@@ -11,10 +11,10 @@ public class WaterReport {
     private final String address;
     private final LatLong coordinates;
 
-    public WaterReport(int number,
-                       String name,
-                       String address,
-                       LatLong coordinates) {
+    WaterReport(int number,
+                String name,
+                String address,
+                LatLong coordinates) {
         timestamp = LocalDateTime.now();
         this.number = number;
         this.name = name;

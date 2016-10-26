@@ -2,7 +2,6 @@ package model.reports;
 
 import fxapp.MainApplication;
 import model.log.ErrorLog;
-import model.log.IncidentPriority;
 import model.service.GeocodeCallback;
 import model.service.GeocodeManager;
 
@@ -30,7 +29,7 @@ public class ReportCreator {
             ReportCreator.mainApplication.generateErrorAlert("Unexpected Error",
                     "Your report could not be filed because the program encountered an unexpected error. " +
                             "Please try again or contact an admin for assistance.");
-            ErrorLog.log(e, IncidentPriority.URGENT);
+            ErrorLog.log(e, true);
             GeocodeManager.cancel();
         }
     }

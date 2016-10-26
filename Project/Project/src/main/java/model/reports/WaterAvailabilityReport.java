@@ -2,8 +2,6 @@ package model.reports;
 
 import com.lynden.gmapsfx.javascript.object.LatLong;
 
-import java.time.LocalDateTime;
-
 public class WaterAvailabilityReport extends WaterReport {
     private final WaterType type;
     private final WaterCondition condition;

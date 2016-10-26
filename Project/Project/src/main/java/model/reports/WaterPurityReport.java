@@ -2,8 +2,6 @@ package model.reports;
 
 import com.lynden.gmapsfx.javascript.object.LatLong;
 
-import java.time.LocalDateTime;
-
 public class WaterPurityReport extends WaterReport {
     private final WaterPurityCondition condition;
     private final double virusPPM;

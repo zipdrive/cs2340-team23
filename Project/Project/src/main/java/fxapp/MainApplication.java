@@ -11,7 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.log.ErrorLog;
-import model.log.IncidentPriority;
 import model.log.SecurityLog;
 import model.profiles.Profile;
 import model.profiles.ProfileList;
@@ -118,7 +117,7 @@ public class MainApplication extends Application implements MapComponentInitiali
             mainScreen.show();
 
         } catch (IOException e) {
-            ErrorLog.log(e, IncidentPriority.LOCAL);
+            ErrorLog.log(e, false);
         }
     }
 
@@ -152,7 +151,7 @@ public class MainApplication extends Application implements MapComponentInitiali
             dialogStage.showAndWait();
 
         } catch (IOException e) {
-            ErrorLog.log(e, IncidentPriority.LOCAL);
+            ErrorLog.log(e, false);
         }
     }
 
@@ -176,7 +175,7 @@ public class MainApplication extends Application implements MapComponentInitiali
 
             mapStage.showAndWait();
         } catch (Exception e) {
-            ErrorLog.log(e, IncidentPriority.LOCAL);
+            ErrorLog.log(e, false);
         }
     }
 
