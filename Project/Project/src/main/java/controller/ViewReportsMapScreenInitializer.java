@@ -6,7 +6,6 @@ import com.lynden.gmapsfx.javascript.JavascriptRuntime;
 import com.lynden.gmapsfx.javascript.object.*;
 import fxapp.MainApplication;
 import model.log.ErrorLog;
-import model.log.IncidentPriority;
 import model.reports.ReportList;
 import model.reports.WaterAvailabilityReport;
 
@@ -54,7 +53,7 @@ public class ViewReportsMapScreenInitializer implements MapScreenInitializer {
         } catch (Exception e) {
             mainApplication.generateErrorAlert("Error showing map.",
                     "Unable to show map at this time. Please try again later.");
-            ErrorLog.log(e, IncidentPriority.URGENT);
+            ErrorLog.log(e, true);
         }
     }
 }

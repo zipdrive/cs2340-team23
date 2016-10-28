@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import model.reports.ReportCreator;
-import model.reports.WaterAvailabilityReport;
 import model.reports.WaterCondition;
 import model.reports.WaterType;
 
