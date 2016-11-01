@@ -172,15 +172,16 @@ public class MainApplication extends Application implements MapComponentInitiali
             mapStage.initModality(Modality.WINDOW_MODAL);
             mapStage.initOwner(mainScreen);
 
-            googleMapView = new GoogleMapView();
-            googleMapView.addMapInializedListener(() -> {
-                initializer.initializeMap(googleMapView, this);
+            GoogleMapView mapView = new GoogleMapView();
+            mapView.addMapInializedListener(() -> {
+                initializer.initializeMap(mapView, this);
 
-                Scene scene = new Scene(googleMapView);
+                Scene scene = new Scene(mapView);
                 mapStage.setScene(scene);
             });
 
             mapStage.showAndWait();
+            googleMapView = new GoogleMapView();
 
         } catch (Exception e) {
             ErrorLog.log(e, false);
