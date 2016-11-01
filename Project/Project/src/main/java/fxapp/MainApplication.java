@@ -2,6 +2,10 @@ package fxapp;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.lynden.gmapsfx.javascript.object.MapOptions;
+import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
 import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -79,6 +83,7 @@ public class MainApplication extends Application implements MapComponentInitiali
         reports = new ReportList();
         profiles = new ProfileList();
         mainScreen = primaryStage;
+
         googleMapView = new GoogleMapView();
 
         ReportCreator.setMainApplication(this);
@@ -167,13 +172,16 @@ public class MainApplication extends Application implements MapComponentInitiali
             mapStage.initModality(Modality.WINDOW_MODAL);
             mapStage.initOwner(mainScreen);
 
-            GoogleMapView mapView = new GoogleMapView();
-            Scene scene = new Scene(mapView);
-            mapStage.setScene(scene);
+            googleMapView = new GoogleMapView();
+            googleMapView.addMapInializedListener(() -> {
+                initializer.initializeMap(googleMapView, this);
 
-            initializer.initializeMap(mapView, this);
+                Scene scene = new Scene(googleMapView);
+                mapStage.setScene(scene);
+            });
 
             mapStage.showAndWait();
+
         } catch (Exception e) {
             ErrorLog.log(e, false);
         }
