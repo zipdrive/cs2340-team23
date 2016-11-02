@@ -8,12 +8,18 @@ import com.lynden.gmapsfx.javascript.object.MapOptions;
 import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
 import controller.*;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import model.IOManager;
 import model.log.ErrorLog;
 import model.log.SecurityLog;
 import model.profiles.Profile;
@@ -23,6 +29,7 @@ import model.reports.ReportList;
 import model.service.GeocodeManager;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class MainApplication extends Application implements MapComponentInitializedListener {
 
@@ -80,8 +87,9 @@ public class MainApplication extends Application implements MapComponentInitiali
      */
     @Override
     public void start(Stage primaryStage) {
-        reports = new ReportList();
-        profiles = new ProfileList();
+        reports = IOManager.loadReports();
+        profiles = IOManager.loadProfiles();
+        IOManager.loadLogs();
         mainScreen = primaryStage;
 
         googleMapView = new GoogleMapView();
@@ -119,10 +127,17 @@ public class MainApplication extends Application implements MapComponentInitiali
             // Show the scene containing the layout.
             Scene scene = new Scene(layout);
             mainScreen.setScene(scene);
+            scene.getWindow().setOnCloseRequest(event -> {
+                if (generateSaveAndQuitMessage()) {
+                    System.exit(0);
+                } else {
+                    event.consume();
+                }
+            });
             mainScreen.show();
 
         } catch (IOException e) {
-            ErrorLog.log(e, false);
+            ErrorLog.log(e);
         }
     }
 
@@ -156,7 +171,7 @@ public class MainApplication extends Application implements MapComponentInitiali
             dialogStage.showAndWait();
 
         } catch (IOException e) {
-            ErrorLog.log(e, false);
+            ErrorLog.log(e);
         }
     }
 
@@ -172,19 +187,18 @@ public class MainApplication extends Application implements MapComponentInitiali
             mapStage.initModality(Modality.WINDOW_MODAL);
             mapStage.initOwner(mainScreen);
 
-            GoogleMapView mapView = new GoogleMapView();
-            mapView.addMapInializedListener(() -> {
-                initializer.initializeMap(mapView, this);
+            googleMapView = new GoogleMapView();
+            googleMapView.addMapInializedListener(() -> {
+                initializer.initializeMap(googleMapView, this);
 
-                Scene scene = new Scene(mapView);
+                Scene scene = new Scene(googleMapView);
                 mapStage.setScene(scene);
             });
 
             mapStage.showAndWait();
-            googleMapView = new GoogleMapView();
 
         } catch (Exception e) {
-            ErrorLog.log(e, false);
+            ErrorLog.log(e);
         }
     }
 
@@ -218,6 +232,37 @@ public class MainApplication extends Application implements MapComponentInitiali
         alert.setContentText(body);
 
         alert.showAndWait();
+    }
+
+    /**
+     * Generates a message asking if the user wants to save and quit, and saves if the user directs the program to do so
+     * @return      true if the program should close, false otherwise
+     */
+    public boolean generateSaveAndQuitMessage() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.initOwner(mainScreen);
+
+        alert.setTitle("Save Before Closing");
+        alert.setHeaderText("Save Before Closing");
+        alert.setContentText("Do you want to save before closing?");
+
+        ButtonType yesButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(yesButton, noButton, cancelButton);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == yesButton) {
+            // save
+            IOManager.saveProfiles(profiles);
+            IOManager.saveReports(reports);
+            IOManager.saveLogs();
+            return true;
+        } else if (result.get() == noButton) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

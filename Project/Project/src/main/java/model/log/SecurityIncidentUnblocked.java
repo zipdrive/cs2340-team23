@@ -3,7 +3,7 @@ package model.log;
 /**
  * SecurityIncident for when an account is unblocked
  */
-class SecurityIncidentUnblocked extends SecurityIncident {
+public class SecurityIncidentUnblocked extends SecurityIncident {
     private final String unblockedUsername;
 
     public SecurityIncidentUnblocked(String admin, String unblocked) {

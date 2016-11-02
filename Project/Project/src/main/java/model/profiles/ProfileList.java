@@ -3,12 +3,13 @@ package model.profiles;
 import model.log.SecurityLog;
 import model.profiles.Profile;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Class to manage all Profiles
  */
-public class ProfileList {
+public class ProfileList implements Serializable {
     private final Set<Profile> profileSet;
 
     /**

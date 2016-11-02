@@ -2,14 +2,16 @@ package model.reports;
 
 import com.lynden.gmapsfx.javascript.object.LatLong;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class WaterReport {
+public class WaterReport implements Serializable {
     private final LocalDateTime timestamp;
     private final int number;
     private final String name;
     private final String address;
-    private final LatLong coordinates;
+    private final double lat;
+    private final double lon;
 
     WaterReport(int number,
                 String name,
@@ -19,18 +21,25 @@ public class WaterReport {
         this.number = number;
         this.name = name;
         this.address = address;
-        this.coordinates = coordinates;
+        this.lat = coordinates.getLatitude();
+        this.lon = coordinates.getLongitude();
     }
 
     /**
      * Retrieves the date and time of the report
-     * @return      date and time of report
+     * @return      String date and time of report
      */
     public String getDateAndTime() { return timestamp.getMonth().getValue() +
             "/" + timestamp.getDayOfMonth() +
             "/" + timestamp.getYear() +
             ", " + timestamp.getHour() +
             ":" + String.format("%02d", timestamp.getMinute()); }
+
+    /**
+     * Retrieves the timestamp of the report
+     * @return      LocalDateTime timestamp of the report
+     */
+    public LocalDateTime getTimestamp() { return timestamp; }
 
     /**
      * Retrieves the report number
@@ -54,5 +63,5 @@ public class WaterReport {
      * Retrieves the location of the report, in coordinates
      * @return      location of report, in coordinates
      */
-    public LatLong getCoordinates() { return coordinates; }
+    public LatLong getCoordinates() { return new LatLong(lat, lon); }
 }

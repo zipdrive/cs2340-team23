@@ -56,4 +56,5 @@ public class SecurityLog {
     public static void logReportDeleted(String manager, String reportNumber) {
         log.add(new SecurityIncidentReportDelete(manager, reportNumber));
     }
+
 }

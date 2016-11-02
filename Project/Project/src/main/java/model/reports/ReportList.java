@@ -1,9 +1,10 @@
 package model.reports;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportList {
+public class ReportList implements Serializable {
     private final List<WaterAvailabilityReport> availabilityReports;
     private final List<WaterPurityReport> purityReports;
 
