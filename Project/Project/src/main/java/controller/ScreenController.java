@@ -24,4 +24,6 @@ public class ScreenController {
     public void setMainApplication(MainApplication mainApplication) {
         this.mainApplication = mainApplication;
     }
+
+
 }

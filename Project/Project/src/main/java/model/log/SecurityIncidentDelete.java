@@ -3,7 +3,7 @@ package model.log;
 /**
  * SecurityIncident for when an admin deletes an account
  */
-class SecurityIncidentDelete extends SecurityIncident {
+public class SecurityIncidentDelete extends SecurityIncident {
     private final String deletedUsername;
 
     public SecurityIncidentDelete(String admin, String deleted) {

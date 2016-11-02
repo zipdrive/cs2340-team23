@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ErrorLog {
-    private static List<ErrorIncident> log;
+    private static List<Exception> log;
 
     public static void init() {
         ErrorLog.log = new ArrayList<>();
     }
 
-    public static void log(Exception e, boolean p) {
-        ErrorLog.log.add(new ErrorIncident(e, p));
-        System.out.println("Error logged: " + e.toString() + ", priority " + (p ? "HIGH" : "LOW"));
+    public static void log(Exception e) {
+        ErrorLog.log.add(e);
+        System.out.println("Error logged: " + e.toString());
         StackTraceElement[] stackTrace = e.getStackTrace();
         for (int i = 0; i < 8 || i < stackTrace.length; i++) {
             System.out.println("\t" + stackTrace[i].toString());
@@ -21,4 +21,5 @@ public class ErrorLog {
             System.out.println("\t... " + stackTrace.length + " more ...");
         }
     }
+
 }

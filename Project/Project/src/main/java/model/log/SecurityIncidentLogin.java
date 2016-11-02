@@ -5,7 +5,7 @@ import model.profiles.LoginAttemptResult;
 /**
  * SecurityIncident for when a login attempt is made
  */
-class SecurityIncidentLogin extends SecurityIncident {
+public class SecurityIncidentLogin extends SecurityIncident {
     private final LoginAttemptResult result;
 
     public SecurityIncidentLogin(String username, LoginAttemptResult result) {

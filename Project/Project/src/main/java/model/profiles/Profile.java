@@ -1,12 +1,13 @@
 package model.profiles;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * Class representing a user account
  */
-public class Profile {
+public class Profile implements Serializable {
     private UserType userType;
     private String name;
     private String title;

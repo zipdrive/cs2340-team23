@@ -23,6 +23,8 @@ public class WelcomeScreenController extends ScreenController {
      */
     @FXML
     public void handleQuitPressed() {
-        System.exit(0);
+        if (getMainApplication().generateSaveAndQuitMessage()) {
+            System.exit(0);
+        }
     }
 }

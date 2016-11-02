@@ -3,7 +3,7 @@ package model.log;
 /**
  * SecurityIncident for when an admin bans an account
  */
-class SecurityIncidentBanned extends SecurityIncident {
+public class SecurityIncidentBanned extends SecurityIncident {
     private final String bannedUsername;
 
     public SecurityIncidentBanned(String admin, String banned) {
