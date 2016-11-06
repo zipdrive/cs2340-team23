@@ -20,6 +20,6 @@ public class MainManagerScreenController extends MainWorkerScreenController {
      * Handles when the "View Purity Reports (Historical)" button is pressed
      */
     public void handleViewHistoricalReportsPressed() {
-
+        getMainApplication().initDialogScreen("View Historical Reports", "viewHistoricalReportsScreen.fxml");
     }
 }

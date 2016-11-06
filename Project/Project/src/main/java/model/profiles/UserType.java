@@ -1,5 +1,7 @@
 package model.profiles;
 
+import java.io.Serializable;
+
 /**
  * Defines access privileges of a Profile
  *  USER:
@@ -19,7 +21,7 @@ package model.profiles;
  *      delete individual accounts
  *      view security log
  */
-public enum UserType {
+public enum UserType implements Serializable {
     USER("User"), WORKER("Worker"), MANAGER("Manager"), ADMIN("Admin");
 
     private final String stringRepresent;
