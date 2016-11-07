@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import model.reports.ReportList;
 import model.reports.WaterAvailabilityReport;
 
-public class ViewReportsScreenController extends DialogScreenController {
+public final class ViewReportsScreenController extends DialogScreenController {
 
     @FXML
     private Label reportNumberLabel;
@@ -23,13 +23,14 @@ public class ViewReportsScreenController extends DialogScreenController {
     @Override
     public void init() {
         ReportList reportList = getMainApplication().getReports();
+        String doubleNewline = "\n\n";
         for (WaterAvailabilityReport report : reportList.getReports()) {
-            reportNumberLabel.setText(reportNumberLabel.getText() + report.getReportNumber() + "\n\n");
-            dateAndTimeLabel.setText(dateAndTimeLabel.getText() + report.getDateAndTime() + "\n\n");
-            nameLabel.setText(nameLabel.getText() + report.getNameOfReporter() + "\n\n");
-            locationLabel.setText(locationLabel.getText() + report.getLocationOfReport() + "\n\n");
-            typeLabel.setText(typeLabel.getText() + report.getWaterType() + "\n\n");
-            conditionLabel.setText(conditionLabel.getText() + report.getWaterCondition() + "\n\n");
+            reportNumberLabel.setText(reportNumberLabel.getText() + report.getReportNumber() + doubleNewline);
+            dateAndTimeLabel.setText(dateAndTimeLabel.getText() + report.getDateAndTime() + doubleNewline);
+            nameLabel.setText(nameLabel.getText() + report.getNameOfReporter() + doubleNewline);
+            locationLabel.setText(locationLabel.getText() + report.getLocationOfReport() + doubleNewline);
+            typeLabel.setText(typeLabel.getText() + report.getWaterType() + doubleNewline);
+            conditionLabel.setText(conditionLabel.getText() + report.getWaterCondition() + doubleNewline);
         }
     }
 }

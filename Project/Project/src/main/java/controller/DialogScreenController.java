@@ -9,23 +9,23 @@ public class DialogScreenController extends ScreenController {
 
     /**
      * Sets a pointer to the dialog stage
-     * @param dialogStage       Stage representing the dialog window
+     * @param s       Stage representing the dialog window
      */
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
+    public final void setDialogStage(Stage s) {
+        dialogStage = s;
     }
 
     /**
      * Closes the dialog stage
      */
-    public void closeDialogStage() { dialogStage.close(); }
+    public final void closeDialogStage() { dialogStage.close(); }
 
     /**
      * Generates an error dialog popup
      * @param header        String for the title and header of the popup message
      * @param body          String for the body of the popup message
      */
-    void generateErrorWarning(String header, String body) {
+    protected final void generateErrorWarning(String header, String body) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.initOwner(dialogStage);
 
@@ -41,7 +41,7 @@ public class DialogScreenController extends ScreenController {
      * @param header        String for the title and header of the popup message
      * @param body          String for the body of the popup message
      */
-    void generateInformationPopup(String header, String body) {
+    protected final void generateInformationPopup(String header, String body) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.initOwner(dialogStage);
 

@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * Class to manage all Profiles
  */
-public class ProfileList implements Serializable {
+public final class ProfileList implements Serializable {
     private final Set<Profile> profileSet;
 
     /**

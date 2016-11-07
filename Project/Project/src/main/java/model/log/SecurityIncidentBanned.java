@@ -3,7 +3,7 @@ package model.log;
 /**
  * SecurityIncident for when an admin bans an account
  */
-public class SecurityIncidentBanned extends SecurityIncident {
+public final class SecurityIncidentBanned extends SecurityIncident {
     private final String bannedUsername;
 
     public SecurityIncidentBanned(String admin, String banned) {
@@ -12,8 +12,8 @@ public class SecurityIncidentBanned extends SecurityIncident {
     }
 
     public String toString() {
-        return "Account banned at " + timestamp.toString() +
-                " -- adminID:" + username +
+        return "Account banned at " + getTimestamp().toString() +
+                " -- adminID:" + getUsername() +
                 ", bannedID:" + bannedUsername;
     }
 }

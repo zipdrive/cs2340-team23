@@ -3,7 +3,7 @@ package model.log;
 /**
  * SecurityIncident for when a report is deleted
  */
-public class SecurityIncidentReportDelete extends SecurityIncident {
+public final class SecurityIncidentReportDelete extends SecurityIncident {
     private final String deletedReport;
 
     public SecurityIncidentReportDelete(String admin, String deleted) {
@@ -12,8 +12,8 @@ public class SecurityIncidentReportDelete extends SecurityIncident {
     }
 
     public String toString() {
-        return "Account unblocked at " + timestamp.toString() +
-                " -- adminID:" + username +
+        return "Account unblocked at " + getTimestamp().toString() +
+                " -- adminID:" + getUsername() +
                 ", reportID:" + deletedReport;
     }
 }

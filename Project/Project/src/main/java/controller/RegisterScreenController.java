@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import model.profiles.Profile;
 import model.profiles.UserType;
 
-public class RegisterScreenController extends DialogScreenController {
+public final class RegisterScreenController extends DialogScreenController {
 
     @FXML
     private TextField nameField;

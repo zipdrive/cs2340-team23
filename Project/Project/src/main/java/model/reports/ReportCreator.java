@@ -29,7 +29,7 @@ public class ReportCreator {
             ReportCreator.mainApplication.generateErrorAlert("Unexpected Error",
                     "Your report could not be filed because the program encountered an unexpected error. " +
                             "Please try again or contact an admin for assistance.");
-            ErrorLog.log(e, true);
+            ErrorLog.log(e);
             GeocodeManager.cancel();
         }
     }

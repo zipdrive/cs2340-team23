@@ -5,17 +5,17 @@ import model.profiles.LoginAttemptResult;
 /**
  * SecurityIncident for when a login attempt is made
  */
-public class SecurityIncidentLogin extends SecurityIncident {
+public final class SecurityIncidentLogin extends SecurityIncident {
     private final LoginAttemptResult result;
 
-    public SecurityIncidentLogin(String username, LoginAttemptResult result) {
+    public SecurityIncidentLogin(String username, LoginAttemptResult r) {
         super(username);
-        this.result = result;
+        result = r;
     }
 
     public String toString() {
-        return "Attempted login at " + timestamp.toString() +
-                " -- userID:" + username +
+        return "Attempted login at " + getTimestamp().toString() +
+                " -- userID:" + getUsername() +
                 ", result:'" + result.toString() + "'";
     }
 }

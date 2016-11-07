@@ -15,14 +15,14 @@ public class ScreenController {
      * Returns a pointer to the main application
      * @return      pointer to the MainApplication object
      */
-    MainApplication getMainApplication() { return mainApplication; }
+    protected final MainApplication getMainApplication() { return mainApplication; }
 
     /**
      * Sets a pointer to the main application
-     * @param mainApplication   pointer to the main application
+     * @param m   pointer to the main application
      */
-    public void setMainApplication(MainApplication mainApplication) {
-        this.mainApplication = mainApplication;
+    public final void setMainApplication(MainApplication m) {
+        mainApplication = m;
     }
 
 

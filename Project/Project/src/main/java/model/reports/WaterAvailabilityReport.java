@@ -2,7 +2,7 @@ package model.reports;
 
 import com.lynden.gmapsfx.javascript.object.LatLong;
 
-public class WaterAvailabilityReport extends WaterReport {
+public final class WaterAvailabilityReport extends WaterReport {
     private final WaterType type;
     private final WaterCondition condition;
 
@@ -12,18 +12,18 @@ public class WaterAvailabilityReport extends WaterReport {
      * @param name              the name of the reporter
      * @param address           the formatted address of the water source
      * @param coordinates       the coordinates of the water source
-     * @param type              the type of water source
-     * @param condition         the condition of the water source
+     * @param t                 the type of water source
+     * @param c                 the condition of the water source
      */
     public WaterAvailabilityReport(int number,
                                    String name,
                                    String address,
                                    LatLong coordinates,
-                                   WaterType type,
-                                   WaterCondition condition) {
+                                   WaterType t,
+                                   WaterCondition c) {
         super(number, name, address, coordinates);
-        this.type = type;
-        this.condition = condition;
+        type = t;
+        condition = c;
     }
 
     /**

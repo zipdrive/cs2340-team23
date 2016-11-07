@@ -7,7 +7,7 @@ import model.reports.ReportCreator;
 import model.reports.WaterCondition;
 import model.reports.WaterType;
 
-public class WaterAvailabilityReportScreenController extends DialogScreenController {
+public final class WaterAvailabilityReportScreenController extends DialogScreenController {
 
     @FXML
     private TextField locationField;

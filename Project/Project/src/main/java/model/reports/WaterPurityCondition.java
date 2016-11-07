@@ -7,7 +7,7 @@ public enum WaterPurityCondition {
 
     private final String text;
 
-    WaterPurityCondition(String text) { this.text = text; }
+    WaterPurityCondition(String s) { text = s; }
 
     public String toString() { return text; }
 }

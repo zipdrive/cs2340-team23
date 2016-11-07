@@ -1,14 +1,13 @@
 package model;
 
-import model.log.ErrorLog;
-import model.log.SecurityIncident;
-import model.log.SecurityLog;
 import model.profiles.ProfileList;
 import model.reports.ReportList;
 
 import java.io.*;
 
-public class IOManager {
+public final class IOManager {
+
+    private IOManager() {}
 
     /**
      * Saves all Profiles in session
@@ -17,11 +16,12 @@ public class IOManager {
     public static void saveProfiles(ProfileList profiles) {
         try {
             File file = new File("persist/profiles.sav");
-            file.getParentFile().mkdirs();
-            FileOutputStream fileStream = new FileOutputStream(file, false);
-            ObjectOutputStream output = new ObjectOutputStream(fileStream);
-            output.writeObject(profiles);
-            output.close();
+            if (file.getParentFile().mkdirs()) {
+                FileOutputStream fileStream = new FileOutputStream(file, false);
+                ObjectOutputStream output = new ObjectOutputStream(fileStream);
+                output.writeObject(profiles);
+                output.close();
+            }
         } catch (java.io.FileNotFoundException e) {
         } catch (java.io.IOException e) {
         }
@@ -52,11 +52,12 @@ public class IOManager {
     public static void saveReports(ReportList reports) {
         try {
             File file = new File("persist/reports.sav");
-            file.getParentFile().mkdirs();
-            FileOutputStream fileStream = new FileOutputStream(file, false);
-            ObjectOutputStream output = new ObjectOutputStream(fileStream);
-            output.writeObject(reports);
-            output.close();
+            if (file.getParentFile().mkdirs()) {
+                FileOutputStream fileStream = new FileOutputStream(file, false);
+                ObjectOutputStream output = new ObjectOutputStream(fileStream);
+                output.writeObject(reports);
+                output.close();
+            }
         } catch (java.io.FileNotFoundException e) {
         } catch (java.io.IOException e) {
         }
