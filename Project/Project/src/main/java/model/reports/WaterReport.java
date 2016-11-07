@@ -13,23 +13,23 @@ public class WaterReport implements Serializable {
     private final double lat;
     private final double lon;
 
-    WaterReport(int number,
-                String name,
-                String address,
+    WaterReport(int num,
+                String n,
+                String a,
                 LatLong coordinates) {
         timestamp = LocalDateTime.now();
-        this.number = number;
-        this.name = name;
-        this.address = address;
-        this.lat = coordinates.getLatitude();
-        this.lon = coordinates.getLongitude();
+        number = num;
+        name = n;
+        address = a;
+        lat = coordinates.getLatitude();
+        lon = coordinates.getLongitude();
     }
 
     /**
      * Retrieves the date and time of the report
      * @return      String date and time of report
      */
-    public String getDateAndTime() { return timestamp.getMonth().getValue() +
+    public final String getDateAndTime() { return timestamp.getMonth().getValue() +
             "/" + timestamp.getDayOfMonth() +
             "/" + timestamp.getYear() +
             ", " + timestamp.getHour() +
@@ -39,29 +39,29 @@ public class WaterReport implements Serializable {
      * Retrieves the timestamp of the report
      * @return      LocalDateTime timestamp of the report
      */
-    public LocalDateTime getTimestamp() { return timestamp; }
+    public final LocalDateTime getTimestamp() { return timestamp; }
 
     /**
      * Retrieves the report number
      * @return      number of report
      */
-    public int getReportNumber() { return number; }
+    public final int getReportNumber() { return number; }
 
     /**
      * Retrieves the name of the person who made the report
      * @return      name of report creator
      */
-    public String getNameOfReporter() { return name; }
+    public final String getNameOfReporter() { return name; }
 
     /**
      * Retrieves the location of the report
      * @return      location of report, in address form
      */
-    public String getLocationOfReport() { return address; }
+    public final String getLocationOfReport() { return address; }
 
     /**
      * Retrieves the location of the report, in coordinates
      * @return      location of report, in coordinates
      */
-    public LatLong getCoordinates() { return new LatLong(lat, lon); }
+    public final LatLong getCoordinates() { return new LatLong(lat, lon); }
 }

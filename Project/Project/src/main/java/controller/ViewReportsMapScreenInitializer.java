@@ -59,7 +59,7 @@ public class ViewReportsMapScreenInitializer implements MapScreenInitializer {
         } catch (Exception e) {
             mainApplication.generateErrorAlert("Error showing map.",
                     "Unable to show map at this time. Please try again later.");
-            ErrorLog.log(e, true);
+            ErrorLog.log(e);
         }
     }
 }

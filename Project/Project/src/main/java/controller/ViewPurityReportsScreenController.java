@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import model.reports.ReportList;
 import model.reports.WaterPurityReport;
 
-public class ViewPurityReportsScreenController extends DialogScreenController {
+public final class ViewPurityReportsScreenController extends DialogScreenController {
     @FXML
     private Label reportNumberLabel;
     @FXML
@@ -24,14 +24,15 @@ public class ViewPurityReportsScreenController extends DialogScreenController {
     @Override
     public void init() {
         ReportList reportList = getMainApplication().getReports();
+        String doubleNewline = "\n\n";
         for (WaterPurityReport report : reportList.getPurityReports()) {
-            reportNumberLabel.setText(reportNumberLabel.getText() + report.getReportNumber() + "\n\n");
-            dateAndTimeLabel.setText(dateAndTimeLabel.getText() + report.getDateAndTime() + "\n\n");
-            nameLabel.setText(nameLabel.getText() + report.getNameOfReporter() + "\n\n");
-            locationLabel.setText(locationLabel.getText() + report.getLocationOfReport() + "\n\n");
-            conditionLabel.setText(conditionLabel.getText() + report.getOverallCondition() + "\n\n");
-            virusPPMLabel.setText(virusPPMLabel.getText() + report.getVirusPPM() + "\n\n");
-            contaminantPPMLabel.setText(contaminantPPMLabel.getText() + report.getContaminantPPM() + "\n\n");
+            reportNumberLabel.setText(reportNumberLabel.getText() + report.getReportNumber() + doubleNewline);
+            dateAndTimeLabel.setText(dateAndTimeLabel.getText() + report.getDateAndTime() + doubleNewline);
+            nameLabel.setText(nameLabel.getText() + report.getNameOfReporter() + doubleNewline);
+            locationLabel.setText(locationLabel.getText() + report.getLocationOfReport() + doubleNewline);
+            conditionLabel.setText(conditionLabel.getText() + report.getOverallCondition() + doubleNewline);
+            virusPPMLabel.setText(virusPPMLabel.getText() + report.getVirusPPM() + doubleNewline);
+            contaminantPPMLabel.setText(contaminantPPMLabel.getText() + report.getContaminantPPM() + doubleNewline);
         }
     }
 }

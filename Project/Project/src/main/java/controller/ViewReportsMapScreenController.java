@@ -7,7 +7,8 @@ import javafx.fxml.FXML;
 import model.reports.ReportList;
 import model.reports.WaterAvailabilityReport;
 
-public class ViewReportsMapScreenController extends DialogScreenController implements MapComponentInitializedListener {
+public final class ViewReportsMapScreenController extends DialogScreenController implements MapComponentInitializedListener {
+
 
     @FXML
     private GoogleMapView googleMapView;
@@ -17,7 +18,7 @@ public class ViewReportsMapScreenController extends DialogScreenController imple
             ReportList reports = getMainApplication().getReports();
 
             MapOptions mapOptions = new MapOptions();
-            mapOptions.center(new LatLong(33.966256, -84.576393))
+            mapOptions.center(new LatLong(0, 0))
                     .zoom(1)
                     .mapType(MapTypeIdEnum.SATELLITE)
                     .streetViewControl(false);

@@ -31,7 +31,7 @@ import model.service.GeocodeManager;
 import java.io.IOException;
 import java.util.Optional;
 
-public class MainApplication extends Application implements MapComponentInitializedListener {
+public final class MainApplication extends Application implements MapComponentInitializedListener {
 
     private Stage mainScreen;
     private Pane layout;
@@ -62,6 +62,12 @@ public class MainApplication extends Application implements MapComponentInitiali
         user = null;
         initScreen("Welcome Screen", "welcomeScreen.fxml");
     }
+
+    /**
+     * Retrieves a reference to the main window
+     * @return      Stage representing the main window
+     */
+    public Stage getMainScreen() { return mainScreen; }
 
     /**
      * Retrieve the current Profile

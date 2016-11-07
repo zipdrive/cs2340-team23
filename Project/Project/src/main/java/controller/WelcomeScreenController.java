@@ -2,7 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 
-public class WelcomeScreenController extends ScreenController {
+public final class WelcomeScreenController extends ScreenController {
 
     /**
      * Handle the "Login" button being pressed
@@ -24,7 +24,7 @@ public class WelcomeScreenController extends ScreenController {
     @FXML
     public void handleQuitPressed() {
         if (getMainApplication().generateSaveAndQuitMessage()) {
-            System.exit(0);
+            getMainApplication().getMainScreen().close();
         }
     }
 }

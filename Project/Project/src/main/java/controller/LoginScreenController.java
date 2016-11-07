@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 /**
  * Class handling the screen for logging in
  */
-public class LoginScreenController extends DialogScreenController {
+public final class LoginScreenController extends DialogScreenController {
 
     @FXML
     private TextField usernameField;

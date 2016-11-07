@@ -2,7 +2,7 @@ package model.reports;
 
 import com.lynden.gmapsfx.javascript.object.LatLong;
 
-public class WaterPurityReport extends WaterReport {
+public final class WaterPurityReport extends WaterReport {
     private final WaterPurityCondition condition;
     private final double virusPPM;
     private final double contaminantPPM;
@@ -11,13 +11,13 @@ public class WaterPurityReport extends WaterReport {
                              String name,
                              String address,
                              LatLong coordinates,
-                             WaterPurityCondition condition,
-                             double virusPPM,
-                             double contaminantPPM) {
+                             WaterPurityCondition c,
+                             double vPPM,
+                             double cPPM) {
         super(number, name, address, coordinates);
-        this.condition = condition;
-        this.virusPPM = virusPPM;
-        this.contaminantPPM = contaminantPPM;
+        condition = c;
+        virusPPM = vPPM;
+        contaminantPPM = cPPM;
     }
 
     /**

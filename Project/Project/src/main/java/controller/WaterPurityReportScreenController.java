@@ -9,7 +9,7 @@ import model.reports.WaterPurityCondition;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class WaterPurityReportScreenController extends DialogScreenController {
+public final class WaterPurityReportScreenController extends DialogScreenController {
     @FXML
     private TextField locationField;
 

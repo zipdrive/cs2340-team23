@@ -7,7 +7,9 @@ import java.util.regex.Pattern;
 /**
  * Class representing a user account
  */
-public class Profile implements Serializable {
+public final class Profile implements Serializable {
+    private static final int PHONE_NUMBER_DIVISIONS = 3;
+
     private UserType userType;
     private String name;
     private String title;
@@ -15,22 +17,22 @@ public class Profile implements Serializable {
     private String password;
     private String emailAddress;
     private String homeAddress;
-    private int[] phoneNumber = new int[3];
+    private int[] phoneNumber = new int[PHONE_NUMBER_DIVISIONS];
 
     /**
      * Initializer for a new Profile
-     * @param name          the actual name of the user
-     * @param username      the username of the user
-     * @param password      the password for the Profile
-     * @param userType      UserType representing the access privileges of the Profile
+     * @param n          the actual name of the user
+     * @param u          the username of the user
+     * @param p          the password for the Profile
+     * @param t          UserType representing the access privileges of the Profile
      */
-    public Profile(String name, String username, String password, UserType userType) {
-        this.name = name;
-        this.username = username;
-        this.password = password;
+    public Profile(String n, String u, String p, UserType t) {
+        name = n;
+        username = u;
+        password = p;
         emailAddress = "";
         homeAddress = "";
-        this.userType = userType;
+        userType = t;
     }
 
     /**
@@ -41,9 +43,9 @@ public class Profile implements Serializable {
 
     /**
      * Sets the type of Profile
-     * @param userType      UserType representing the new privileges of the Profile
+     * @param t      UserType representing the new privileges of the Profile
      */
-    public void setUserType(UserType userType) { this.userType = userType; }
+    public void setUserType(UserType t) { userType = t; }
 
     /**
      * Returns the name of the Profile user
@@ -53,9 +55,9 @@ public class Profile implements Serializable {
 
     /**
      * Sets the name of the Profile user
-     * @param name      String representing the new name to set for the Profile
+     * @param n      String representing the new name to set for the Profile
      */
-    public void setName(String name) { this.name = name; }
+    public void setName(String n) { name = n; }
 
     /**
      * Returns the title of the Profile user (Mr, Miss, etc.)
@@ -65,9 +67,9 @@ public class Profile implements Serializable {
 
     /**
      * Sets the title of the Profile user
-     * @param title     String representing the new title to set for the Profile user
+     * @param t     String representing the new title to set for the Profile user
      */
-    public void setTitle(String title) { this.title = title; }
+    public void setTitle(String t) { title = t; }
 
     /**
      * Returns the username of the Profile
@@ -77,9 +79,9 @@ public class Profile implements Serializable {
 
     /**
      * Sets the username of the Profile
-     * @param username      String representing the new username
+     * @param u      String representing the new username
      */
-    public void setUsername(String username) { this.username = username; }
+    public void setUsername(String u) { username = u; }
 
     /**
      * Returns the password of the Profile
@@ -89,9 +91,9 @@ public class Profile implements Serializable {
 
     /**
      * Sets the password of the Profile
-     * @param password      String representing the new password
+     * @param p      String representing the new password
      */
-    public void setPassword(String password) { this.password = password; }
+    public void setPassword(String p) { password = p; }
 
     /**
      * Returns the home address of the Profile user
@@ -101,9 +103,9 @@ public class Profile implements Serializable {
 
     /**
      * Sets the home address of the Profile user
-     * @param homeAddress       String representing the new home address of the Profile user
+     * @param h       String representing the new home address of the Profile user
      */
-    public void setHomeAddress(String homeAddress) { this.homeAddress = homeAddress; }
+    public void setHomeAddress(String h) { homeAddress = h; }
 
     /**
      * Returns the email address of the Profile user
@@ -143,30 +145,30 @@ public class Profile implements Serializable {
 
     /**
      * Sets the email address of the Profile user
-     * @param emailAddress      String representing the new email address of the Profile user
+     * @param e      String representing the new email address of the Profile user
      */
-    public void setEmail(String emailAddress) {
-        if (matchEmailFormat(emailAddress)) {
-            this.emailAddress = emailAddress;
+    public void setEmail(String e) {
+        if (matchEmailFormat(e)) {
+            emailAddress = e;
         }
     }
 
     /**
      * Sets the phone number of the Profile user
-     * @param phoneNumber       String representing the new phone number of the Profile user
+     * @param p       String representing the new phone number of the Profile user
      */
-    public void setPhoneNumber(String phoneNumber) {
-        if (phoneNumber.equals("")) {
-            for (int i = 0; i < 3; i++) {
-                this.phoneNumber[i] = 0;
+    public void setPhoneNumber(String p) {
+        if (p.equals("")) {
+            for (int i = 0; i < PHONE_NUMBER_DIVISIONS; i++) {
+                phoneNumber[i] = 0;
             }
             return;
         } else {
             Pattern pattern = Pattern.compile("\\(?(\\d{3})\\)?\\-?(\\d{3})\\-?(\\d{4})");
-            Matcher matcher = pattern.matcher(phoneNumber);
+            Matcher matcher = pattern.matcher(p);
             if (matcher.find()) {
-                for (int i = 0; i < 3; i++) {
-                    this.phoneNumber[i] = Integer.parseInt(matcher.group(i+1));
+                for (int i = 0; i < PHONE_NUMBER_DIVISIONS; i++) {
+                    phoneNumber[i] = Integer.parseInt(matcher.group(i+1));
                 }
                 return;
             }

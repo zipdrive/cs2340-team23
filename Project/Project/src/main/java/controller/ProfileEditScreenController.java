@@ -5,7 +5,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.profiles.Profile;
 
-public class ProfileEditScreenController extends DialogScreenController {
+public final class ProfileEditScreenController extends DialogScreenController {
 
     @FXML
     private TextField nameField;

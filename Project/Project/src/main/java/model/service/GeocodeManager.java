@@ -37,10 +37,16 @@ public class GeocodeManager {
     public static GeocodeCallback getCallback() { return GeocodeManager.callback; }
 
     /**
-     * Retrieves an array of results gained from the geocoding
-     * @return      GeocodingResult[] of results from the geocoding request
+     * Retrieves the number of results found after getting geocoding results back
+     * @return      the number of results
      */
-    public static GeocodingResult[] getResults() { return GeocodeManager.results; }
+    public static int getNumResults() { return GeocodeManager.results.length; }
+
+    /**
+     * Retrieves the GeocodingResult at the specified index
+     * @return      GeocodingResult in list of results at specified index
+     */
+    public static GeocodingResult getResult(int i) { return GeocodeManager.results[i]; }
 
     /**
      * Retrieves the formatted address of the last request

@@ -5,8 +5,10 @@ import model.profiles.LoginAttemptResult;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SecurityLog {
+public final class SecurityLog {
     private static List<SecurityIncident> log;
+
+    private SecurityLog() {}
 
     public static void init() {
         log = new ArrayList<>();
