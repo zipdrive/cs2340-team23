@@ -47,13 +47,13 @@ public final class ProfileEditScreenController extends DialogScreenController {
         String password = passwordField.getText();
         String email = emailField.getText();
         String phoneNumber = phoneNumberField.getText();
-        if (name.equals("")) {
+        if (name.isEmpty()) {
             generateErrorWarning("No Name Entered", "Please enter a name and try again.");
-        } else if (username.equals("")) {
+        } else if (username.isEmpty()) {
             generateErrorWarning("No Username Entered", "Please enter a username and try again.");
-        } else if (password.equals("")) {
+        } else if (password.isEmpty()) {
             generateErrorWarning("No Password Entered", "Please enter a password and try again.");
-        } else if (!email.equals("") && !Profile.matchEmailFormat(email)) {
+        } else if (!email.isEmpty() && !Profile.matchEmailFormat(email)) {
             generateErrorWarning("Invalid Email", "Please enter a valid email address and try again.");
         } else if (!phoneNumber.equals("") && !Profile.matchPhoneNumberFormat(phoneNumber)) {
             generateErrorWarning("Invalid Phone Number", "Please enter a valid phone number and try again.");

@@ -17,7 +17,7 @@ public final class Profile implements Serializable {
     private String password;
     private String emailAddress;
     private String homeAddress;
-    private int[] phoneNumber = new int[PHONE_NUMBER_DIVISIONS];
+    private final int[] phoneNumber = new int[PHONE_NUMBER_DIVISIONS];
 
     /**
      * Initializer for a new Profile
@@ -140,7 +140,7 @@ public final class Profile implements Serializable {
      * @return          True if it matches the proper format (has 3-3-4 digits), False otherwise
      */
     public static Boolean matchPhoneNumberFormat(String phoneNumber) {
-        return Pattern.compile("\\(?(\\d{3})\\)?-? ?(\\d{3})\\-?(\\d{4})").matcher(phoneNumber).find();
+        return Pattern.compile("\\(?(\\d{3})\\)?[\\s\\-]*(\\d{3})[\\s\\-]*(\\d{4})").matcher(phoneNumber).find();
     }
 
     /**
@@ -158,21 +158,18 @@ public final class Profile implements Serializable {
      * @param p       String representing the new phone number of the Profile user
      */
     public void setPhoneNumber(String p) {
-        if (p.equals("")) {
+        if (p.isEmpty()) {
             for (int i = 0; i < PHONE_NUMBER_DIVISIONS; i++) {
                 phoneNumber[i] = 0;
             }
-            return;
         } else {
-            Pattern pattern = Pattern.compile("\\(?(\\d{3})\\)?\\-?(\\d{3})\\-?(\\d{4})");
+            Pattern pattern = Pattern.compile("\\(?(\\d{3})\\)?[\\s\\-]*(\\d{3})[\\s\\-]*(\\d{4})");
             Matcher matcher = pattern.matcher(p);
             if (matcher.find()) {
                 for (int i = 0; i < PHONE_NUMBER_DIVISIONS; i++) {
                     phoneNumber[i] = Integer.parseInt(matcher.group(i+1));
                 }
-                return;
             }
-            return;
         }
     }
 }

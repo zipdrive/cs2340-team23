@@ -2,14 +2,8 @@ package fxapp;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
-import com.lynden.gmapsfx.javascript.object.GoogleMap;
-import com.lynden.gmapsfx.javascript.object.LatLong;
-import com.lynden.gmapsfx.javascript.object.MapOptions;
-import com.lynden.gmapsfx.javascript.object.MapTypeIdEnum;
 import controller.*;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,7 +12,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import model.IOManager;
 import model.log.ErrorLog;
 import model.log.SecurityLog;
@@ -34,7 +27,6 @@ import java.util.Optional;
 public final class MainApplication extends Application implements MapComponentInitializedListener {
 
     private Stage mainScreen;
-    private Pane layout;
 
     private GoogleMapView googleMapView;
 
@@ -101,7 +93,7 @@ public final class MainApplication extends Application implements MapComponentIn
         googleMapView = new GoogleMapView();
 
         ReportCreator.setMainApplication(this);
-        try { GeocodeManager.init(); } catch (Exception e) {}
+        try { GeocodeManager.init(); } catch (Exception ignored) {}
         ErrorLog.init();
         SecurityLog.init();
 
@@ -120,7 +112,7 @@ public final class MainApplication extends Application implements MapComponentIn
             // Load layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApplication.class.getResource("../view/" + filename));
-            layout = loader.load();
+            Pane layout = loader.load();
 
             // Give the controller access to the main app.
             ScreenController controller = loader.getController();
@@ -258,16 +250,16 @@ public final class MainApplication extends Application implements MapComponentIn
         alert.getButtonTypes().setAll(yesButton, noButton, cancelButton);
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == yesButton) {
-            // save
-            IOManager.saveProfiles(profiles);
-            IOManager.saveReports(reports);
-            IOManager.saveLogs();
-            return true;
-        } else if (result.get() == noButton) {
-            return true;
-        } else {
+        if (!result.isPresent()) {
             return false;
+        } else {
+            if (result.get() == yesButton) {
+                // save
+                IOManager.saveProfiles(profiles);
+                IOManager.saveReports(reports);
+                IOManager.saveLogs();
+                return true;
+            } else return result.get() == noButton;
         }
     }
 

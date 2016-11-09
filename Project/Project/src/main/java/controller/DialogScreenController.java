@@ -25,7 +25,7 @@ public class DialogScreenController extends ScreenController {
      * @param header        String for the title and header of the popup message
      * @param body          String for the body of the popup message
      */
-    protected final void generateErrorWarning(String header, String body) {
+    final void generateErrorWarning(String header, String body) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.initOwner(dialogStage);
 
@@ -41,7 +41,7 @@ public class DialogScreenController extends ScreenController {
      * @param header        String for the title and header of the popup message
      * @param body          String for the body of the popup message
      */
-    protected final void generateInformationPopup(String header, String body) {
+    final void generateInformationPopup(String header, String body) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.initOwner(dialogStage);
 

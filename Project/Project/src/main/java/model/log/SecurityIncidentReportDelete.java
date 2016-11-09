@@ -3,7 +3,7 @@ package model.log;
 /**
  * SecurityIncident for when a report is deleted
  */
-public final class SecurityIncidentReportDelete extends SecurityIncident {
+final class SecurityIncidentReportDelete extends SecurityIncident {
     private final String deletedReport;
 
     public SecurityIncidentReportDelete(String admin, String deleted) {

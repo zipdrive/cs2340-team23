@@ -15,7 +15,7 @@ public class ScreenController {
      * Returns a pointer to the main application
      * @return      pointer to the MainApplication object
      */
-    protected final MainApplication getMainApplication() { return mainApplication; }
+    final MainApplication getMainApplication() { return mainApplication; }
 
     /**
      * Sets a pointer to the main application

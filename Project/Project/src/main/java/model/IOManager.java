@@ -22,8 +22,7 @@ public final class IOManager {
                 output.writeObject(profiles);
                 output.close();
             }
-        } catch (java.io.FileNotFoundException e) {
-        } catch (java.io.IOException e) {
+        } catch (java.io.IOException ignored) {
         }
     }
 
@@ -38,9 +37,7 @@ public final class IOManager {
             ProfileList profiles = (ProfileList)input.readObject();
             input.close();
             if (profiles != null) { return profiles; }
-        } catch (java.io.FileNotFoundException e) {
-        } catch (java.io.IOException e) {
-        } catch (java.lang.ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException ignored) {
         }
         return new ProfileList();
     }
@@ -58,8 +55,7 @@ public final class IOManager {
                 output.writeObject(reports);
                 output.close();
             }
-        } catch (java.io.FileNotFoundException e) {
-        } catch (java.io.IOException e) {
+        } catch (java.io.IOException ignored) {
         }
     }
 
@@ -74,9 +70,7 @@ public final class IOManager {
             ReportList reports = (ReportList)input.readObject();
             input.close();
             if (reports != null) { return reports; }
-        } catch (java.io.FileNotFoundException e) {
-        } catch (java.io.IOException e) {
-        } catch (java.lang.ClassNotFoundException e) {
+        } catch (ClassNotFoundException | IOException ignored) {
         }
         return new ReportList();
     }

@@ -2,7 +2,7 @@ package model.log;
 
 import java.time.LocalDateTime;
 
-public class SecurityIncident {
+class SecurityIncident {
     private final LocalDateTime timestamp;
     private final String username;
 
@@ -15,11 +15,11 @@ public class SecurityIncident {
      * Gets the date and time of the SecurityIncident
      * @return      LocalDateTime representing date and time of the SecurityIncident
      */
-    public final LocalDateTime getTimestamp() { return timestamp; }
+    final LocalDateTime getTimestamp() { return timestamp; }
 
     /**
      * Gets the username of the inciter of the SecurityIncident
      * @return      username of the user who caused the SecurityIncident
      */
-    public final String getUsername() { return username; }
+    final String getUsername() { return username; }
 }

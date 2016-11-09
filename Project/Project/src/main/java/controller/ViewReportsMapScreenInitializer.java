@@ -4,7 +4,6 @@ import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.javascript.IJavascriptRuntime;
 import com.lynden.gmapsfx.javascript.JavascriptRuntime;
 import com.lynden.gmapsfx.javascript.event.MapStateEventType;
-import com.lynden.gmapsfx.javascript.event.UIEventType;
 import com.lynden.gmapsfx.javascript.object.*;
 import fxapp.MainApplication;
 import model.log.ErrorLog;

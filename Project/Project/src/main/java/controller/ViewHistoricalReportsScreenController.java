@@ -75,15 +75,13 @@ public class ViewHistoricalReportsScreenController extends DialogScreenControlle
                 virusAxis.setUpperBound(year%4 == 0 ? 366 : 365);
                 contaminantAxis.setUpperBound(year%4 == 0 ? 366 : 365);
 
-                XYChart.Series virusData = new XYChart.Series();
-                XYChart.Series contaminantData = new XYChart.Series();
-                for (WaterPurityReport report : getMainApplication().getReports().getPurityReports()) {
-                    if (report.getTimestamp().getYear() == year && report.getCoordinates().distanceFrom(location) < 0.000001) {
-                        double timestamp = convertDateToNumber(report.getTimestamp());
-                        virusData.getData().add(new XYChart.Data(timestamp, report.getVirusPPM()));
-                        contaminantData.getData().add(new XYChart.Data(timestamp, report.getContaminantPPM()));
-                    }
-                }
+                XYChart.Series<Number, Number> virusData = new XYChart.Series<>();
+                XYChart.Series<Number, Number> contaminantData = new XYChart.Series<>();
+                getMainApplication().getReports().getPurityReports().stream().filter(report -> report.getTimestamp().getYear() == year && report.getCoordinates().distanceFrom(location) < 0.000001).forEach(report -> {
+                    double timestamp = convertDateToNumber(report.getTimestamp());
+                    virusData.getData().add(new XYChart.Data<>(timestamp, report.getVirusPPM()));
+                    contaminantData.getData().add(new XYChart.Data<>(timestamp, report.getContaminantPPM()));
+                });
                 virusPPMChart.getData().clear();
                 virusPPMChart.getData().add(virusData);
                 contaminantPPMChart.getData().clear();

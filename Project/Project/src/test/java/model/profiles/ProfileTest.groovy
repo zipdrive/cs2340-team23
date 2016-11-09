@@ -20,4 +20,17 @@ class ProfileTest extends GroovyTestCase {
         assertFalse(Profile.matchPhoneNumberFormat("000 000-000"));
         assertFalse(Profile.matchPhoneNumberFormat(""));
     }
+
+    void matchEmailFormatTest() {
+        assertTrue(Profile.matchEmailFormat("something@something.smth"));
+        assertTrue(Profile.matchEmailFormat("JoeSchmo@gmail.com"));
+        assertTrue(Profile.matchEmailFortmat("GBurdell27@gatech.edu"));
+        assertTrue(Profile.matchEmailformat("AshKetchum@GottaCatchemAll.net"));
+        assertTrue(Profile.matchEmailFormat("Anemail@awebsite.com"));
+        assertFalse(Profile.matchEmailFormat("JoeSchmo@.com"));
+        assertFalse(Profile.matchEmailFormat("JoeSchmogmail.com"));
+        assertFalse(Profile.matchEmailFormat("something@something"));
+        assertFalse(Profile.matchEmailFormat("something@something."));
+        assertFalse(Profile.matchEmailFormat(""));
+    }
 }
