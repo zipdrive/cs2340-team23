@@ -21,11 +21,11 @@ class ProfileTest extends GroovyTestCase {
         assertFalse(Profile.matchPhoneNumberFormat(""));
     }
 
-    void matchEmailFormatTest() {
+    void testMatchEmailFormat() {
         assertTrue(Profile.matchEmailFormat("something@something.smth"));
         assertTrue(Profile.matchEmailFormat("JoeSchmo@gmail.com"));
-        assertTrue(Profile.matchEmailFortmat("GBurdell27@gatech.edu"));
-        assertTrue(Profile.matchEmailformat("AshKetchum@GottaCatchemAll.net"));
+        assertTrue(Profile.matchEmailFormat("GBurdell27@gatech.edu"));
+        assertTrue(Profile.matchEmailFormat("AshKetchum@GottaCatchemAll.net"));
         assertTrue(Profile.matchEmailFormat("Anemail@awebsite.com"));
         assertFalse(Profile.matchEmailFormat("JoeSchmo@.com"));
         assertFalse(Profile.matchEmailFormat("JoeSchmogmail.com"));

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="target1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../rterp-GMapsFX-5fedb53/GMapsFX/target/GMapsFX-2.0.8-SNAPSHOT-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../rterp-GMapsFX-5fedb53/GMapsFX/target/GMapsFX-2.0.8-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../rterp-GMapsFX-5fedb53/GMapsFX/target/GMapsFX-2.0.8-SNAPSHOT-sources.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
