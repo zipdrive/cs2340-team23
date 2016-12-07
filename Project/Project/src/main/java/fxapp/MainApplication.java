@@ -5,13 +5,15 @@ import com.lynden.gmapsfx.MapComponentInitializedListener;
 import controller.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import model.IOManager;
 import model.log.ErrorLog;
 import model.log.SecurityLog;
@@ -127,6 +129,7 @@ public final class MainApplication extends Application implements MapComponentIn
             mainScreen.setScene(scene);
             scene.getWindow().setOnCloseRequest(event -> {
                 if (generateSaveAndQuitMessage()) {
+                    Thread.currentThread().interrupt();
                     System.exit(0);
                 } else {
                     event.consume();
@@ -230,6 +233,57 @@ public final class MainApplication extends Application implements MapComponentIn
         alert.setContentText(body);
 
         alert.showAndWait();
+    }
+
+    public boolean askForLoginCredentials(String message) {
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("Enter Login Credentials");
+        dialog.setHeaderText(message);
+
+        ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        TextField username = new TextField();
+        username.setPromptText("Username");
+        PasswordField password = new PasswordField();
+        password.setPromptText("Password");
+
+        grid.add(new Label("Username:"), 0, 0);
+        grid.add(username, 1, 0);
+        grid.add(new Label("Password:"), 0, 1);
+        grid.add(password, 1, 1);
+
+        Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
+        loginButton.setDisable(true);
+
+        username.textProperty().addListener((observable, oldValue, newValue) -> {
+            loginButton.setDisable(newValue.trim().isEmpty());
+        });
+
+        dialog.getDialogPane().setContent(grid);
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == loginButtonType) {
+                return new Pair<>(username.getText(), password.getText());
+            }
+            return null;
+        });
+
+        Optional<Pair<String, String>> result = dialog.showAndWait();
+
+        if (result.isPresent()) {
+            if (result.get().getKey().equals(user.getUsername()) && result.get().getValue().equals(user.getPassword())) {
+                return true;
+            } else {
+                generateErrorAlert("Incorrect Credentials", "The credentials you entered were incorrect.");
+            }
+        }
+        return false;
     }
 
     /**

@@ -12,7 +12,7 @@ public class MainScreenController extends ScreenController {
     private Label userLabel;
 
     @Override
-    public final void init() {
+    public void init() {
         userLabel.setText(getMainApplication().getUser().getName() + " (" + getMainApplication().getUser().getUsername() + ")");
     }
 

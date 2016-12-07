@@ -38,6 +38,19 @@ public final class ProfileList implements Serializable {
     }
 
     /**
+     * Removes a Profile with the specified username
+     * @param username     the username of the Profile to be removed
+     * @return      whether the Profile was able to be removed
+     */
+    public boolean removeProfile(String username) {
+        Profile p = findProfile(username);
+        if (p != null) {
+            removeProfile(p);
+        }
+        return (p != null);
+    }
+
+    /**
      * Finds a Profile with the specified username
      * @param username      the username of the Profile to be found
      * @return              the Profile with the specified username,
@@ -65,10 +78,14 @@ public final class ProfileList implements Serializable {
             SecurityLog.logLoginAttempt(username, LoginAttemptResult.UNKNOWN_ID);
         } else if (!p.getPassword().equals(password)) {
             SecurityLog.logLoginAttempt(username, LoginAttemptResult.BAD_PASSWORD);
+        } else if (p.getBlocked()) {
+            return null;
         } else {
             SecurityLog.logLoginAttempt(username, LoginAttemptResult.SUCCESS);
             return p;
         }
         return null;
     }
+
+    public Set<Profile> getProfiles() { return profileSet; }
 }

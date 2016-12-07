@@ -1,8 +1,9 @@
 package model.log;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-class SecurityIncident {
+public class SecurityIncident implements Serializable {
     private final LocalDateTime timestamp;
     private final String username;
 

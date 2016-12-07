@@ -39,6 +39,9 @@ public final class LoginScreenController extends DialogScreenController {
                     case MANAGER:
                         getMainApplication().initScreen("Main Screen", "mainManagerScreen.fxml");
                         break;
+                    case ADMIN:
+                        getMainApplication().initScreen("Main Screen", "mainAdminScreen.fxml");
+                        break;
                     default:
                         generateErrorWarning("Main Screen Not Yet Implemented For That User Account Type", "Please choose another account and try again.");
                         break;

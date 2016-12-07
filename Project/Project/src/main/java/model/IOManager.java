@@ -1,9 +1,12 @@
 package model;
 
+import model.log.SecurityIncident;
+import model.log.SecurityLog;
 import model.profiles.ProfileList;
 import model.reports.ReportList;
 
 import java.io.*;
+import java.util.List;
 
 public final class IOManager {
 
@@ -16,14 +19,15 @@ public final class IOManager {
     public static void saveProfiles(ProfileList profiles) {
         try {
             File file = new File("persist/profiles.sav");
-            if (file.getParentFile().mkdirs()) {
-                FileOutputStream fileStream = new FileOutputStream(file, false);
-                ObjectOutputStream output = new ObjectOutputStream(fileStream);
-                output.writeObject(profiles);
-                output.close();
+            if (file.getParentFile().exists() || file.getParentFile().mkdirs()) {
+                if ((file.exists() || file.createNewFile()) && file.canWrite()) {
+                    FileOutputStream fileStream = new FileOutputStream(file, false);
+                    ObjectOutputStream output = new ObjectOutputStream(fileStream);
+                    output.writeObject(profiles);
+                    output.close();
+                }
             }
-        } catch (java.io.IOException ignored) {
-        }
+        } catch (java.io.IOException ignored) {}
     }
 
     /**
@@ -37,8 +41,7 @@ public final class IOManager {
             ProfileList profiles = (ProfileList)input.readObject();
             input.close();
             if (profiles != null) { return profiles; }
-        } catch (IOException | ClassNotFoundException ignored) {
-        }
+        } catch (IOException | ClassNotFoundException ignored) {}
         return new ProfileList();
     }
 
@@ -49,14 +52,15 @@ public final class IOManager {
     public static void saveReports(ReportList reports) {
         try {
             File file = new File("persist/reports.sav");
-            if (file.getParentFile().mkdirs()) {
-                FileOutputStream fileStream = new FileOutputStream(file, false);
-                ObjectOutputStream output = new ObjectOutputStream(fileStream);
-                output.writeObject(reports);
-                output.close();
+            if (file.getParentFile().exists() || file.getParentFile().mkdirs()) {
+                if ((file.exists() || file.createNewFile()) && file.canWrite()) {
+                    FileOutputStream fileStream = new FileOutputStream(file, false);
+                    ObjectOutputStream output = new ObjectOutputStream(fileStream);
+                    output.writeObject(reports);
+                    output.close();
+                }
             }
-        } catch (java.io.IOException ignored) {
-        }
+        } catch (java.io.IOException ignored) {}
     }
 
     /**
@@ -79,13 +83,28 @@ public final class IOManager {
      * Saves ErrorLog and SecurityLog to file (NOT YET IMPLEMENTED)
      */
     public static void saveLogs() {
-
+        try {
+            File file = new File("persist/logs.sav");
+            if (file.getParentFile().exists() || file.getParentFile().mkdirs()) {
+                if ((file.exists() || file.createNewFile()) && file.canWrite()) {
+                    FileOutputStream fileStream = new FileOutputStream(file, false);
+                    ObjectOutputStream output = new ObjectOutputStream(fileStream);
+                    output.writeObject(SecurityLog.getLog());
+                    output.close();
+                }
+            }
+        } catch (java.io.IOException ignored) {}
     }
 
     /**
      * Loads ErrorLog and SecurityLog from file (NOT YET IMPLEMENTED)
      */
     public static void loadLogs() {
-
+        try {
+            FileInputStream fileStream = new FileInputStream("persist/logs.sav");
+            ObjectInputStream input = new ObjectInputStream(fileStream);
+            SecurityLog.setLog((List<SecurityIncident>)input.readObject());
+            input.close();
+        } catch (IOException | ClassNotFoundException ignored) {}
     }
 }
