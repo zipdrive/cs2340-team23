@@ -2,10 +2,11 @@ package model.log;
 
 import model.profiles.LoginAttemptResult;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class SecurityLog {
+public final class SecurityLog implements Serializable {
     private static List<SecurityIncident> log;
 
     private SecurityLog() {}
@@ -58,5 +59,8 @@ public final class SecurityLog {
     public static void logReportDeleted(String manager, String reportNumber) {
         log.add(new SecurityIncidentReportDelete(manager, reportNumber));
     }
+
+    public static List<SecurityIncident> getLog() { return log; }
+    public static void setLog(List<SecurityIncident> l) { log = l; }
 
 }

@@ -4,7 +4,6 @@ import com.lynden.gmapsfx.javascript.object.LatLong;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 import javafx.scene.control.TextField;
-import model.reports.WaterPurityReport;
 import model.service.GeocodeManager;
 
 import java.time.LocalDateTime;

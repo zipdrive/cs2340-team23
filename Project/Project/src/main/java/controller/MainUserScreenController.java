@@ -1,6 +1,20 @@
 package controller;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+
 public class MainUserScreenController extends MainScreenController {
+
+    @FXML
+    private Button submitButton;
+
+    public void init() {
+        super.init();
+        if (getMainApplication().getUser().getBanned()) {
+            submitButton.setDisable(true);
+        }
+    }
+
     /**
      * Handles when the "Submit Availability Report" button is pressed
      */

@@ -11,6 +11,9 @@ public final class Profile implements Serializable {
     private static final int PHONE_NUMBER_DIVISIONS = 3;
 
     private UserType userType;
+    private boolean blocked;
+    private boolean banned;
+
     private String name;
     private String title;
     private String username;
@@ -46,6 +49,11 @@ public final class Profile implements Serializable {
      * @param t      UserType representing the new privileges of the Profile
      */
     public void setUserType(UserType t) { userType = t; }
+
+    public boolean getBlocked() { return blocked; }
+    public void setBlocked(boolean b) { blocked = b; }
+    public boolean getBanned() { return banned; }
+    public void setBanned(boolean b) { banned = b; }
 
     /**
      * Returns the name of the Profile user
